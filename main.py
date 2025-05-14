@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import library.person
 import library.function
 
@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "<html style='background-color:#ff0000;'><h1 style='color: #00ff00;'>Holy skibidi toliet</h1></html>"
+    return render_template("index.html")
 
 if(__name__ == "__main__"):
-    app.run(host="0.0.0.0", port=5000, debug=True, )
+    app.run(host="0.0.0.0", port=5000, debug=True )
