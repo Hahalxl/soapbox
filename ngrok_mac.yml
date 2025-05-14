@@ -1,0 +1,5 @@
+tunnels:
+  flask-app:
+    proto: http
+    addr: 5000
+    domain: grizzly-shining-muskox.ngrok-free.app

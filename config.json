@@ -7,7 +7,7 @@
   "filing":
   {
     "title": "MUST CHANGE THIS BASED ON MACHINES!!!!!",
-    "dir": "C:\\Users\\Ronan\\Coding\\Python\\Flask\\531",
-    "name": "5/31/2025.csv"
+    "dir": "data/",
+    "name": "5312025.csv"
   }
 }
