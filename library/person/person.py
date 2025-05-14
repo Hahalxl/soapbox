@@ -1,5 +1,3 @@
-from tkinter.ttk import Label
-
 from library.function.functions import _config
 class Person:
     def __init__(self, name:str, osis:str, email:str, organization:str="John Dewey High School", fill:str="="):
@@ -30,8 +28,17 @@ class Person:
         import pandas as pd
         config = _config()
         df = pd.read_csv(f"{config["dir"] + config["name"]}")
-        person = df.loc[(df["name"] == self.name) & (df["osis"] == int(self.osis)), :]
+        df["osis"] = df["osis"].astype(str)
+        person = df.loc[(df["name"] == self.name) & (df["osis"] == (self.osis)), :]
         return not person.empty
+    
+    def asjson(self)->dict:
+        return {
+            "name":self.name,
+            "osis":self.osis,
+            "email":self.email,
+            "organization":self.organization
+        }
 
 
 if (__name__ == "__main__"):
