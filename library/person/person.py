@@ -9,9 +9,12 @@ class Person:
 
     def __str__(self) -> str:
         size = list(map(len, [self.name, self.osis, self.email,self.organization]))
+        name_size = [4, 4, 5, 12]
         longest = max(size)
-        filler = self.fill * (longest + len("Organization:") + 6) #I JUST GOT LAZY HERE, PLEASE DON'T JUDGE. I KNOW THE RESULT IS 13!!!!
-        return f"{filler}\nName:{self.name}\nOsis:{self.osis}\nEmail:{self.email}\nOrganization:{self.organization}\n{filler}\n\n"
+        spacing = (longest + len("Organization:")) #I JUST GOT LAZY HERE, PLEASE DON'T JUDGE. I KNOW THE RESULT IS 12!!!!
+        filler = self.fill * (spacing + name_size[2])
+        return f"{filler}\n||Name:{self.name + " "*(spacing - (len(self.name) + name_size[0]))}||\n||Osis:{self.osis + " "*(spacing - (len(self.osis) + name_size[1]))}||\n||Email:{self.email + " "*(spacing - (len(self.email) + name_size[2]))}||\n||Organization:{self.organization + " "*(spacing - (len(self.organization) + name_size[3]))}||\n{filler}\n\n"
+
 
     def save(self) -> bool:
         config = _config()
@@ -27,7 +30,8 @@ class Person:
         # Incase they Repeat
         import pandas as pd
         config = _config()
-        df = pd.read_csv(f"{config["dir"] + config["name"]}")
+        config["filename"] = f"{config["dir"] + config["name"]}"
+        df = pd.read_csv(config["filename"])
         df["osis"] = df["osis"].astype(str)
         person = df.loc[(df["name"] == self.name) & (df["osis"] == (self.osis)), :]
         return not person.empty
@@ -43,7 +47,8 @@ class Person:
 
 if (__name__ == "__main__"):
     import os
+    #THIS HAS TO CHANGE
     os.chdir("C:\\Users\\Ronan\\Coding\\Python\\Flask\\531")
-    alex = Person("Alex","6952423423","Alexliu@gmail.com","Alex Liu High School")
+    alex = Person("Alex the sigma 2nd","69524234233132321","Alexliu@gmail.com","Alex Liu High School what the sigma bnrasdasd")
     print(alex)
     print(alex.check())

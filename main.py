@@ -13,8 +13,9 @@ app.secret_key = secrets.token_urlsafe(16)
 @app.route("/")
 def index():
     try:
-        if(session["_person"]):
-            _person_info = json.loads(session["person"])
+        _person = session["_person"]
+        if(_person is not None):
+            _person_info = json.loads(_person)
             return render_template("index.html", json_info=_person_info)
     except KeyError:
         pass
@@ -34,11 +35,12 @@ def record():
         request.args.get("email", "None"),
         request.args.get("organization", "Others")
     )
-    if(_person.check()):
-        print("Returned" + _person.name)
-        return redirect(url_for("index"))
     _person.save()
+    if(_person.check()):
+        print("Returned " + _person.name)
+        return redirect(url_for("index"))
     session['_person'] = json.dumps(_person.asjson())
+    print("Recorded: ")
     print(_person)
     return redirect(url_for("index"))
 

@@ -7,14 +7,7 @@ def _config() -> dict:
         configed.close()
     return config
 
-def newfile() -> bool:
-    config = _config()
-    with open(f"{config["dir"] + config["name"]}", 'x') as file:
-        file.write("name,osis,email,organization")
-        file.close()
 
-    print("file created at " + config["dir"] + "\nNamed: " + config["name"])
-    return True
 
 def newfile() -> bool:
     config = _config()
