@@ -17,5 +17,57 @@
     width: 100%;
     height: 50%;
     translate: 0 100%;
-    
+}
+.inputs{
+    margin-bottom: 10px;
+    height: 25px;
+    width: 33%;
+}
+.inputs-text{
+    font-size: 18px;
+    color: #000;
+}
+.record-clear{
+    margin-right: 15%;
+    height: 50px;
+    width: 50px;
+    border: 0px #fff;
+    background-color: #fff;
+}
+.record-clear-image{
+    border-radius: 100%;
+    background-color: #06f;
+    height: 50px;
+    width: 50px;
+}
+@keyframes colorchange {
+
+    from {background-color: #ffffff;}
+    to {background-color: #00aaff;}
+}
+@keyframes fade{
+    0%  {background-color: #06f;}
+    10% {background-color: #07f;}
+    20% {background-color: #08f;}
+    30% {background-color: #09f;}
+    40% {background-color: #0af;}
+    50% {background-color: #0bf;}
+    60% {background-color: #0cf;}
+    70% {background-color: #0df;}
+    80% {background-color: #0ef;}
+    90% {background-color: #0fff;}
+    100% {backfround-color: #00eeff}
+
+}
+
+.record-clear-image:hover{
+    background-color: #06f;
+    animation-name: fade;
+    animation-duration: 10s;
+}
+.record-submit{
+    border-radius: 5px;
+    height: 40px;
+    width: 80px;
+    translate: 0px -15px;
 }

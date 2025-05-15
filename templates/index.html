@@ -15,13 +15,21 @@
         </div>
         <div class="body">
             <form action="/record">
-                <input type="text" class="inputs" name="name">
-                <input type="number" class="inputs" name="osis">
-                <input type="email" class="inputs" name="email">
-                <input type="text" class="inputs" name="organization">
-                <button type="reset">Clear form</button>
-                <button type="submit" class="record-submit">Record</button>
-
+                <div class="div-input">
+                <label class="input-text" for="name">Name</label><br>
+                <label class="label-name">First Name</label>
+                <label class="label-name">Last Name</label><br>
+                <input type="text" class="inputs" name="first-name">
+                <input type=""text" class="input-last inputs" name="last-name">
+                <label></label>
+                <input type="number" class="inputs" name="osis"><br>
+                <input type="email" class="inputs" name="email"><br>
+                <input type="text" class="inputs" name="organization"><br>
+                </div>
+                <div class="div-reset">
+                    <button type="reset" class="record-clear"><img class="record-clear-image" src="{{url_for('static', filename="images/restart.png")}}"></button>
+                    <button type="submit" class="record-submit">Record</button>
+                </div>
             </form>
         </div>
         <div class="footer">
