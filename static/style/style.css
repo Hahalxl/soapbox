@@ -21,7 +21,7 @@
 .inputs{
     margin-bottom: 10px;
     height: 25px;
-    width: 33%;
+    width: 50%;
 }
 .inputs-text{
     font-size: 18px;
@@ -40,11 +40,6 @@
     height: 50px;
     width: 50px;
 }
-@keyframes colorchange {
-
-    from {background-color: #ffffff;}
-    to {background-color: #00aaff;}
-}
 @keyframes fade{
     0%  {background-color: #06f;}
     10% {background-color: #07f;}
@@ -56,18 +51,37 @@
     70% {background-color: #0df;}
     80% {background-color: #0ef;}
     90% {background-color: #0fff;}
-    100% {backfround-color: #00eeff}
+    100% {background-color: #00eeff}
 
+}
+@keyframes scale {
+    100%{
+        transform: scaleX(1.25) scaleY(1.25);
+    }
+    
 }
 
 .record-clear-image:hover{
-    background-color: #06f;
-    animation-name: fade;
-    animation-duration: 10s;
+    animation: fade 1.5s infinite;
+    animation-direction: alternate;
 }
+
+
 .record-submit{
     border-radius: 5px;
     height: 40px;
     width: 80px;
     translate: 0px -15px;
 }
+
+.input-first{
+    width:25%;
+    margin-bottom: 10px;
+    height: 25px;
+    margin-right: 5%
+}
+.input-last{
+    width:25%;
+    margin-bottom: 10px;
+    height: 25px;
+}   
