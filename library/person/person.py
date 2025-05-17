@@ -19,10 +19,14 @@ class Person:
     def save(self) -> bool:
         config = _config()
         infos = f"{self.name},{self.osis},{self.email},{self.organization}\n"
-        print(f"{config["dir"] + config["name"]}")
-        with open(f"{config["dir"] + config["name"]}", 'a') as file:
-            file.write(infos)
-            file.close()
+        try:
+            with open(f"{config["dir"] + config["name"]}", 'a') as file:
+                file.write(infos)
+                file.close()
+        except Exception as E:
+            print(f"Falied to save to {config["dir"] + config["name"]}\nReason{E}")
+            return False
+        print(f"Successfully saved to {config["dir"] + config["name"]}")
         return True
 
 
@@ -43,6 +47,14 @@ class Person:
             "email":self.email,
             "organization":self.organization
         }
+
+    def __eq__(self, other:Person):
+        return all([self.name == other.name, self.osis == other.osis, self.email == other.email, self.organization == other.organization])
+
+class Admin:
+    def __init__(self, name:str, password:str):
+        self.name = name
+        self.password = password
 
 
 if (__name__ == "__main__"):
