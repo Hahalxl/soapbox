@@ -1,45 +1,44 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>It's My Estuary Day!</title>
-        <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='images/favicon.png')}}">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{url_for('static', filename='style/style.css')}}">
-        <meta charset="UTF-8">
-    </head>
-    <body>
-        <div class="header">
-            <h1 class="header-text-1">Nothing yet</h1>
-            <h2 class="header-text-2">Host: ...</h2>
+<head>
+    <meta charset="UTF-8">
+    <title>Estuary Beach Event</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <h1 class="header-text-1">Estuary Beach Event</h1>
+        <h2 class="header-text-2">Sign in form:</h2>
+    </div>
 
-        </div>
-        <div class="body">
-            <form action="/record">
-                <div class="div-input">
-                <label class="input-text" for="name">Name</label><br>
-                <label class="label-name">First Name</label>
-                <label class="label-name">Last Name</label><br>
-                <input type="text" class="input-first" name="first-name">
-                <input type="text" class="input-last" name="last-name">
-                <label></label>
-                <input type="number" class="inputs" name="osis"><br>
-                <input type="email" class="inputs" name="email"><br>
-                <input type="text" class="inputs" name="organization"><br>
-                </div>
-                <div class="div-reset">
-                    <button type="reset" class="record-clear"><img class="record-clear-image" src="{{url_for('static', filename="images/restart.png")}}"></button>
-                    <button type="submit" class="record-submit">Record</button>
-                </div>
-            </form>
-        </div>
-        <div class="footer">
-            <h1 class="footer-text"></h1>
-            <div class="images">
-                <div class="displaying"><img src="" alt=""></div>
-                <div class="displaying"><img src="" alt=""></div>
-                <div class="displaying"><img src="" alt=""></div>
+    <div class="body">
+        <form action="/record">
+            <div class="div-input">
+                <input type="text" class="input-first" name="first-name" placeholder="First Name*" required>
+                <input type="text" class="input-last" name="last-name" placeholder="Last Name*" required>
+                <input type="tel" name="osis" class="inputs" placeholder="Student ID" maxlength="9" inputmode="numeric" pattern="\d{1,9}" required>
+                <input type="email" class="inputs" name="email" placeholder="Email*" required>
+                <input type="text" class="inputs" name="organization" placeholder="Organization">
             </div>
+
+            <p class="required-note">* Required fields</p>
+
+            <div class="div-reset">
+                <button type="reset" class="record-clear">
+                    <img class="record-clear-image" src="{{url_for('static', filename='images/restart.png')}}" alt="Reset">
+                </button>
+                <button type="submit" class="record-submit">Record</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="footer">
+        <h2 class="footer-text">Made with code by Alexander and Alex</h2>
+        <div class="images">
+            <div class="displaying"><img src="" alt="Loading"></div>
+            <div class="displaying"><img src="" alt="Loading"></div>
+            <div class="displaying"><img src="" alt="Loading"></div>
         </div>
-        
-    </body>
+    </div>
+</body>
 </html>
