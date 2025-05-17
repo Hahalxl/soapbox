@@ -10,7 +10,7 @@ log.disabled = True
 app = Flask(__name__)
 app.secret_key = secrets.token_urlsafe(16)
 
-
+#pip install -r requirement.txt
 
 @app.route("/")
 def index():
