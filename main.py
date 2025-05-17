@@ -1,14 +1,16 @@
 from flask import Flask, render_template, request, url_for, redirect, session
 from library.person.person import Person
-import library.function
+from library.function import functions
 
 import secrets
 import logging
-import json
+import json, os
 log = logging.getLogger('werkzeug')
 log.disabled = True
 app = Flask(__name__)
 app.secret_key = secrets.token_urlsafe(16)
+
+
 
 @app.route("/")
 def index():
@@ -30,19 +32,44 @@ def error():
 @app.route("/record")
 def record():
     _person = Person(
-        request.args.get("name", "None"),
+        request.args.get("first_name", "None") +" "+request.args.get("last_name", "None"),
         request.args.get("osis", "NULL"),
         request.args.get("email", "None"),
         request.args.get("organization", "Others")
     )
-    _person.save()
+
     if(_person.check()):
         print("Returned " + _person.name)
         return redirect(url_for("index"))
-    session['_person'] = json.dumps(_person.asjson())
+
     print("Recorded: ")
     print(_person)
+    saved = _person.save()
+    if(saved):
+        session['_person'] = json.dumps(_person.asjson())
+        print("Clearing Console....")
+        # CHANGE THIS TO CLEAR IF MAC MUST DO OR IT BREAKS
+        os.system("cls")
+    else:
+        session["_error"] = "Person not record ERROR! Something is wrong with the file."
+        return redirect(url_for("error"))
     return redirect(url_for("index"))
+
+@app.route("/admin")
+def admin_login():
+
+    Admin = Person(
+        name= functions._config_admin()["name"],
+        password = functions._config_admin()["password"]
+    )
+
+@app.route("/admin-panel")
+def admin():
+    perm = session["admin"]
+    if(perm):
+        return render_template("admin.html")
+    session["_error"] = "Unauthorize request"
+    return redirect(url_for("error"))
 
 if(__name__ == "__main__"):
     app.run(host="0.0.0.0", port=5000, debug=True )

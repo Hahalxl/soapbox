@@ -1,87 +1,153 @@
-.header{
-    background-color: #00ffff;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f6f6f6;
+    margin: 0;
+    padding: 0;
 }
-.header-text-1{
-    color: #ffffff;
-    padding-left: 45%;
-    font-size: 32px;
+
+.header {
+    background-color: #e0e0e0;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #e7e7e7;
+    margin-bottom: 20px;
 }
-.header-text-2{
-    color: #ffffff;
-    font-size: 24px;
-    margin-bottom: 5%;
-    margin-left: 45%
+
+.header-text-1 {
+    margin: 0;
+    font-size: 28px;
 }
-.footer{
-    background-color: #00ffff;
-    width: 100%;
-    height: 50%;
-    translate: 0 100%;
+
+.header-text-2 {
+    margin: 5px 0 0 0;
+    font-size: 16px;
+    color: #353535;
 }
-.inputs{
+
+.body {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+}
+
+.div-input {
+    margin-bottom: 20px;
+}
+
+.input-text {
+    display: block;
+    font-size: 16px;
     margin-bottom: 10px;
-    height: 25px;
-    width: 50%;
 }
-.inputs-text{
-    font-size: 18px;
-    color: #000;
+
+.label-name {
+    display: inline-block;
+    width: 49%;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #444;
 }
-.record-clear{
-    margin-right: 15%;
-    height: 50px;
-    width: 50px;
-    border: 0px #fff;
-    background-color: #fff;
+
+.input-first,
+.input-last {
+    width: 49%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
 }
-.record-clear-image{
-    border-radius: 100%;
-    background-color: #06f;
-    height: 50px;
-    width: 50px;
+
+#otherOrg{
+    display: none;
 }
-@keyframes fade{
-    0%  {background-color: #06f;}
-    10% {background-color: #07f;}
-    20% {background-color: #08f;}
-    30% {background-color: #09f;}
-    40% {background-color: #0af;}
-    50% {background-color: #0bf;}
-    60% {background-color: #0cf;}
-    70% {background-color: #0df;}
-    80% {background-color: #0ef;}
-    90% {background-color: #0fff;}
-    100% {background-color: #00eeff}
+
+
+
+
+
+.inputing{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    color: #bbb;
+    margin-bottom: 10px;
+    margin-right: 100%;
 
 }
-@keyframes scale {
-    100%{
-        transform: scaleX(1.25) scaleY(1.25);
-    }
-    
+
+.inputs {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+}
+
+.required-note {
+    color: red;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.div-reset {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.record-clear {
+    background: none;
+    border: none;
+}
+
+.record-clear-image {
+    width: 48px;
+    height: 48px;
+    background-color: #3c8dbc;
+    border-radius: 100%;
+    transition: background-color 0.5s ease;
 }
 
 .record-clear-image:hover{
-    animation: fade 1.5s infinite;
-    animation-direction: alternate;
+    background-color: #12ecfc;
+    transition: background-color 0.5s ease;
+}
+
+.record-submit {
+    background-color: #3c8dbc;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    transition: background-color 1s ease;
 }
 
 
-.record-submit{
-    border-radius: 5px;
-    height: 40px;
-    width: 80px;
-    translate: 0px -15px;
+.record-submit:hover {
+    background-color: #12ecfc;
+    transition: background-color 1s ease;
 }
 
-.input-first{
-    width:25%;
-    margin-bottom: 10px;
-    height: 25px;
-    margin-right: 5%
+.footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: #888;
 }
-.input-last{
-    width:25%;
-    margin-bottom: 10px;
-    height: 25px;
-}   
+
+.images {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.displaying img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

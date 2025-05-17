@@ -48,7 +48,7 @@ class Person:
             "organization":self.organization
         }
 
-    def __eq__(self, other:Person):
+    def __eq__(self, other):
         return all([self.name == other.name, self.osis == other.osis, self.email == other.email, self.organization == other.organization])
 
 class Admin:

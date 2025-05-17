@@ -7,7 +7,12 @@ def _config() -> dict:
         configed.close()
     return config
 
-
+def _config_admin() -> dict:
+    import json
+    with open("config.json") as configed:
+        config = json.load(configed)["admin"]
+        configed.close()
+    return config
 
 def newfile() -> bool:
     config = _config()
