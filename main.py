@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, url_for, redirect, session
-from library.person.person import Person
+from library.person.person import Person, Admin
 from library.function import functions
 
 import secrets
@@ -35,7 +35,7 @@ def record():
         request.args.get("first_name", "None") +" "+request.args.get("last_name", "None"),
         request.args.get("osis", "NULL"),
         request.args.get("email", "None"),
-        request.args.get("organization", "Others")
+        request.args.get("organizations","Others") if not request.args.get("organization", "Others") else request.args.get("organization", "Others")
     )
 
     if(_person.check()):
@@ -58,16 +58,24 @@ def record():
 @app.route("/admin")
 def admin_login():
 
-    Admin = Person(
-        name= functions._config_admin()["name"],
-        password = functions._config_admin()["password"]
+    _admin = Admin(
+        name = request.args.get("username"),
+        password = request.args.get("password")
     )
+
+    if(_admin.ifadmin()):
+        _json = json.dumps({"name":_admin.name, "password":_admin.password})
+        session["admin"] = _json
+        return redirect(url_for("admin"))
 
 @app.route("/admin-panel")
 def admin():
-    perm = session["admin"]
-    if(perm):
+    _info = session["admin"]
+    perm = json.loads(_info)
+
+    if(perm["name"]):
         return render_template("admin.html")
+
     session["_error"] = "Unauthorize request"
     return redirect(url_for("error"))
 
