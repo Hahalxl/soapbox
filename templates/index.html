@@ -2,8 +2,8 @@
     <meta charset="UTF-8">
     <title>Estuary Beach Event</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{url_for('static', filename='favicon.png')}}" type="image/x-icon">
-    <link rel="stylesheet" href="{{url_for('static', filename='style/style.css')}}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </head>
@@ -16,57 +16,151 @@
     <div class="body">
         <form action="/record">
             <div class="div-input">
-                <label for="Name" class="inputing">Name</label>
+                <label for="Name" class="inputing">Name:*</label>
                 <input type="text" class="input-first" name="first_name" placeholder="First Name*" required>
                 <input type="text" class="input-last" name="last_name" placeholder="Last Name*" required>
-                <label for="osis" class="inputing">Osis</label>
-                <input type="tel" name="osis" class="inputs" placeholder="Leave blank if none" maxlength="9" inputmode="numeric" pattern="\d{1,9}">
-                <label for="email" class="inputing">Email</label>
-                <input type="email" class="inputs" name="email" placeholder="yourexample@email.com*" required>
-                <label for="organization" class="inputing">Organization</label>
-                <select class="inputs" name="organization" id="orgs" onchange="toggleOtherInput()" required>
-                            <option value="" selected disabled hidden>Choose here*</option>
-                            <option value="BISC">Brooklyn Italians Soccer Club</option>
-                            <option value="BOP">Billion Oyster Project</option>
-                            <option value="CPF">City Parks Foundation</option>
-                            <option value="EB25">Eubie Blake P.S 25</option>
-                            <option value="HS">Harbor School</option>
-                            <option value="JDHS">John Dewey High School</option>
-                            <option value="KECS">Kingsborough Early College School</option>
-                            <option value="NYS">NYSMEA</option>
-                            <option value="PFP">Partnership for Parks</option>
-                            <option value="SPS">St. Patricks School</option>
-                            <option value="WCS">WCS</option>
-                            <option value="XHS">Xaverian High School</option>
-                            <option value="Other">Other</option>
-                </select>
+                <label for="osis" class="inputing">OSIS/Student ID:</label>
+                <input type="tel" name="osis" class="inputs" placeholder="Leave blank if you don't have one" maxlength="9" inputmode="numeric" pattern="\d{1,9}">
+                <label for="email" class="inputing">Email:*</label>
+                <input type="email" class="inputs" name="email" placeholder="example@email.com*" required>
 
-                        <div id="otherOrg">
-                            <label id="otherlabel" class="inputing hide" for="otherOrg" style="margin-right: 0%;">Organization Name</label>
-                            <input class="inputs" type="text" id="otherOrgInput" name="organization" placeholder="Enter organization name">
-                        </div>
+                <!--start-->
+<label for="organization" class="inputing">Organization/School:</label> 
+<div class="dropdown" id="orgDropdown">
+  <input type="text" class="dropdown-input" placeholder="Select or type organization..." readonly />
+  <span class="dropdown-arrow"></span>
+  <div class="dropdown-list">
+    <input type="text" class="dropdown-search" placeholder="Search organization/schools..." />
+    <div class="dropdown-items-container"></div>
+    <div class="dropdown-no-results" style="display:none;">
+      Nothing found. Please enter your organizations/schools name and press enter.
+    </div>
+  </div>
+</div>
 
-                        <script>
-                            var orgSelect = document.getElementById("orgs");
-                            var select = document.getElementById("otherOrg");
-                            var hide = document.getElementById("otherlabel");
 
-                            function toggleOtherInput() {
-                                if (orgSelect.value === "Other") {
-                                    select.style.display = "block";
-                                    //hide.style.display = "block";
-                                } else {
-                                    select.style.display = "none";
-                                    //hide.style.display = "none";
-                                }
-                            }
-                        </script>
-            </div>
+<!--menu for other org-->
+<div id="otherOrg">
+  <label id="otherlabel" class="inputing" for="otherOrgInput">Other Organization:</label>
+  <input class="inputs" type="text" id="otherOrgInput" name="organization" placeholder="Enter organization name" />
+</div>
+
+
+<script>
+  (function(){
+    const dropdown = document.getElementById('orgDropdown');
+    const dropdownInput = dropdown.querySelector('.dropdown-input');
+    const dropdownList = dropdown.querySelector('.dropdown-list');
+    const dropdownSearch = dropdown.querySelector('.dropdown-search');
+    const dropdownItemsContainer = dropdown.querySelector('.dropdown-items-container');
+    const noResultsMsg = dropdown.querySelector('.dropdown-no-results');
+    const otherOrgDiv = document.getElementById('otherOrg');
+    const otherOrgInput = document.getElementById('otherOrgInput');
+
+    const organizations = [
+      "Brooklyn Italians Soccer Club",
+      "Billion Oyster Project",
+      "City Parks Foundation",
+      "Eubie Blake P.S 25",
+      "Harbor School",
+      "John Dewey High School",
+      "Kingsborough Early College School",
+      "NYSMEA",
+      "Partnership for Parks",
+      "St. Patricks School",
+      "Wildlife Conservation Society",
+      "Xaverian High School"
+    ];
+
+    let selectedOrg = null;
+
+    function renderList(filter = '') {
+      dropdownItemsContainer.innerHTML = '';
+      const filtered = organizations.filter(org =>
+        org.toLowerCase().includes(filter.toLowerCase())
+      );
+
+      if (filtered.length === 0) {
+        noResultsMsg.style.display = 'block';
+      } else {
+        noResultsMsg.style.display = 'none';
+        filtered.forEach(org => {
+          const div = document.createElement('div');
+          div.className = 'dropdown-item';
+          div.textContent = org;
+          div.addEventListener('click', () => {
+            selectOrganization(org);
+          });
+          dropdownItemsContainer.appendChild(div);
+        });
+
+        const otherDiv = document.createElement('div');
+        otherDiv.className = 'dropdown-item';
+        otherDiv.textContent = 'Other';
+        otherDiv.style.fontStyle = 'italic';
+        otherDiv.addEventListener('click', () => {
+          selectOrganization('Other');
+        });
+        dropdownItemsContainer.appendChild(otherDiv);
+      }
+    }
+
+    function selectOrganization(orgName) {
+      selectedOrg = orgName;
+      dropdownInput.value = orgName === 'Other' ? '' : orgName;
+      dropdown.classList.remove('open');
+      dropdownSearch.value = '';
+      renderList();
+      if (orgName === 'Other') {
+        otherOrgDiv.style.display = 'block';
+        otherOrgInput.value = '';
+        otherOrgInput.focus();
+      } else {
+        otherOrgDiv.style.display = 'none';
+        otherOrgInput.value = '';
+      }
+    }
+
+    dropdownInput.addEventListener('click', () => {
+      dropdown.classList.toggle('open');
+      dropdownSearch.focus();
+      renderList();
+    });
+
+    dropdownSearch.addEventListener('input', () => {
+      const val = dropdownSearch.value.trim();
+      renderList(val);
+
+      if (val.length > 0 && !organizations.some(org => org.toLowerCase() === val.toLowerCase())) {
+        noResultsMsg.style.display = 'block';
+      } else {
+        noResultsMsg.style.display = 'none';
+      }
+    });
+
+    document.addEventListener('click', e => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('open');
+
+        const typed = dropdownSearch.value.trim();
+        if (typed.length > 0 && !organizations.some(org => org.toLowerCase() === typed.toLowerCase())) {
+          selectOrganization('Other');
+          otherOrgInput.value = typed;
+          dropdownInput.value = typed;
+        }
+      }
+    });
+
+    dropdownInput.addEventListener('keydown', e => {
+      e.preventDefault();
+    });
+  })();
+</script>
+<!--end-->
 
             <p class="required-note">* Required fields</p>
-
             <div class="div-reset">
-                <button type="reset" class="record-clear">
+                <button type="button" class="record-clear" data-bs-toggle="modal" data-bs-target="#confirmResetModal">
                     <img class="record-clear-image" src="{{url_for('static', filename='images/restart.png')}}" alt="Reset">
                 </button>
                 <button type="submit" class="record-submit">Record</button>
@@ -75,12 +169,44 @@
     </div>
 
     <div class="footer">
-        <h2 class="footer-text">Made with code by Alexander and Alex</h2>
+        <h5 class="footer-text">Made with code by Alexander and Alex</h5>
         <div class="images">
             <div class="displaying"><img src="" alt="Loading"></div>
             <div class="displaying"><img src="" alt="Loading"></div>
             <div class="displaying"><img src="" alt="Loading"></div>
         </div>
     </div>
+
+    <!--clear button gui and code-->
+<div class="modal fade" id="confirmResetModal" tabindex="-1" aria-labelledby="confirmResetModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmResetModalLabel">Confirm Reset</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to clear the form? All data will be lost.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmResetBtn">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <!--warning menu-->
+<script>
+    document.getElementById("confirmResetBtn").addEventListener("click", function () {
+        const form = document.querySelector("form");
+        form.reset();
+        const resetModal = bootstrap.Modal.getInstance(document.getElementById('confirmResetModal'));
+        resetModal.hide();
+    });
+</script>
+    <!--END OF clear button gui and code-->
+
+
+
 </body>
 </html>
