@@ -1,212 +1,403 @@
-<head>
-    <meta charset="UTF-8">
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="UTF-8">
     <title>Estuary Beach Event</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+    <link rel="icon" href="{{url_for('static', filename='images/favicon.png')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static', filename='style/styles.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='style/style.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
-</head>
-<body>
-    <div class="header">
-        <h1 class="header-text-1">Estuary Beach Event</h1>
-        <h2 class="header-text-2">Sign in form:</h2>
-    </div>
-
-    <div class="body">
-        <form action="/record">
-            <div class="div-input">
-                <label for="Name" class="inputing">Name:*</label>
-                <input type="text" class="input-first" name="first_name" placeholder="First Name*" required>
-                <input type="text" class="input-last" name="last_name" placeholder="Last Name*" required>
-                <label for="osis" class="inputing">OSIS/Student ID:</label>
-                <input type="tel" name="osis" class="inputs" placeholder="Leave blank if you don't have one" maxlength="9" inputmode="numeric" pattern="\d{1,9}">
-                <label for="email" class="inputing">Email:*</label>
-                <input type="email" class="inputs" name="email" placeholder="example@email.com*" required>
-
-                <!--start-->
-<label for="organization" class="inputing">Organization/School:</label> 
-<div class="dropdown" id="orgDropdown">
-  <input type="text" class="dropdown-input" placeholder="Select or type organization..." readonly />
-  <span class="dropdown-arrow"></span>
-  <div class="dropdown-list">
-    <input type="text" class="dropdown-search" placeholder="Search organization/schools..." />
-    <div class="dropdown-items-container"></div>
-    <div class="dropdown-no-results" style="display:none;">
-      Nothing found. Please enter your organizations/schools name and press enter.
-    </div>
-  </div>
-</div>
-
-
-<!--menu for other org-->
-<div id="otherOrg">
-  <label id="otherlabel" class="inputing" for="otherOrgInput">Other Organization:</label>
-  <input class="inputs" type="text" id="otherOrgInput" name="organization" placeholder="Enter organization name" />
-</div>
-
-
-<script>
-  (function(){
-    const dropdown = document.getElementById('orgDropdown');
-    const dropdownInput = dropdown.querySelector('.dropdown-input');
-    const dropdownList = dropdown.querySelector('.dropdown-list');
-    const dropdownSearch = dropdown.querySelector('.dropdown-search');
-    const dropdownItemsContainer = dropdown.querySelector('.dropdown-items-container');
-    const noResultsMsg = dropdown.querySelector('.dropdown-no-results');
-    const otherOrgDiv = document.getElementById('otherOrg');
-    const otherOrgInput = document.getElementById('otherOrgInput');
-
-    const organizations = [
-      "Brooklyn Italians Soccer Club",
-      "Billion Oyster Project",
-      "City Parks Foundation",
-      "Eubie Blake P.S 25",
-      "Harbor School",
-      "John Dewey High School",
-      "Kingsborough Early College School",
-      "NYSMEA",
-      "Partnership for Parks",
-      "St. Patricks School",
-      "Wildlife Conservation Society",
-      "Xaverian High School"
-    ];
-
-    let selectedOrg = null;
-
-    function renderList(filter = '') {
-      dropdownItemsContainer.innerHTML = '';
-      const filtered = organizations.filter(org =>
-        org.toLowerCase().includes(filter.toLowerCase())
-      );
-
-      if (filtered.length === 0) {
-        noResultsMsg.style.display = 'block';
-      } else {
-        noResultsMsg.style.display = 'none';
-        filtered.forEach(org => {
-          const div = document.createElement('div');
-          div.className = 'dropdown-item';
-          div.textContent = org;
-          div.addEventListener('click', () => {
-            selectOrganization(org);
-          });
-          dropdownItemsContainer.appendChild(div);
-        });
-
-        const otherDiv = document.createElement('div');
-        otherDiv.className = 'dropdown-item';
-        otherDiv.textContent = 'Other';
-        otherDiv.style.fontStyle = 'italic';
-        otherDiv.addEventListener('click', () => {
-          selectOrganization('Other');
-        });
-        dropdownItemsContainer.appendChild(otherDiv);
-      }
-    }
-
-    function selectOrganization(orgName) {
-      selectedOrg = orgName;
-      dropdownInput.value = orgName === 'Other' ? '' : orgName;
-      dropdown.classList.remove('open');
-      dropdownSearch.value = '';
-      renderList();
-      if (orgName === 'Other') {
-        otherOrgDiv.style.display = 'block';
-        otherOrgInput.value = '';
-        otherOrgInput.focus();
-      } else {
-        otherOrgDiv.style.display = 'none';
-        otherOrgInput.value = '';
-      }
-    }
-
-    dropdownInput.addEventListener('click', () => {
-      dropdown.classList.toggle('open');
-      dropdownSearch.focus();
-      renderList();
-    });
-
-    dropdownSearch.addEventListener('input', () => {
-      const val = dropdownSearch.value.trim();
-      renderList(val);
-
-      if (val.length > 0 && !organizations.some(org => org.toLowerCase() === val.toLowerCase())) {
-        noResultsMsg.style.display = 'block';
-      } else {
-        noResultsMsg.style.display = 'none';
-      }
-    });
-
-    document.addEventListener('click', e => {
-      if (!dropdown.contains(e.target)) {
-        dropdown.classList.remove('open');
-
-        const typed = dropdownSearch.value.trim();
-        if (typed.length > 0 && !organizations.some(org => org.toLowerCase() === typed.toLowerCase())) {
-          selectOrganization('Other');
-          otherOrgInput.value = typed;
-          dropdownInput.value = typed;
-        }
-      }
-    });
-
-    dropdownInput.addEventListener('keydown', e => {
-      e.preventDefault();
-    });
-  })();
-</script>
-<!--end-->
-
-            <p class="required-note">* Required fields</p>
-            <div class="div-reset">
-                <button type="button" class="record-clear" data-bs-toggle="modal" data-bs-target="#confirmResetModal">
-                    <img class="record-clear-image" src="{{url_for('static', filename='images/restart.png')}}" alt="Reset">
-                </button>
-                <button type="submit" class="record-submit">Record</button>
+    </head>
+    <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="10">
+        <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-headers">
+            <a class="navbar-brand" href="#"><h1 class="navtitle">It's my Estuary Day!</h1></a>
             </div>
-        </form>
-    </div>
+            <div class="container-fluid flex-column-reverse">
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-text" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-text" href="#memory">Memory</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-text" href="#footer">Footer</a>
+                </li>
+                </ul>
+                </div>
+                <button class="btn-admin navbar-btn" type="button" data-bs-toggle="modal" data-bs-target="#admin-login" >Admin login</button>
+            </div>
+        </nav>
+        <div class="container-fluid d-flex align-items-center justify-content-center" id="about">
+            <div class="">
+                <h2 class="div-title" id="aboutdisplay"></h2>
+                <div class="div-content">
+                <p class="div-content-text" id="aboutcontent">
+                    
+                </p>
+            </div>
+            <div>
+                <h3 class="record-text">Click below to record your contribution!</h3>
+            </div style="width:100%;">
+              <button class="record-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-record" id="check">Record yourself!</button>
+            </div>
 
-    <div class="footer">
-        <h5 class="footer-text">Made with code by Alexander and Alex</h5>
-        <div class="images">
-            <div class="displaying"><img src="" alt="Loading"></div>
-            <div class="displaying"><img src="" alt="Loading"></div>
-            <div class="displaying"><img src="" alt="Loading"></div>
+            <script>
+                let iteration = 0;
+                const txt = 'About the event!'; /* The text */
+                const speed = 25; /* The speed/duration of the effect in milliseconds */
+                const animated3 = document.getElementById("aboutdisplay")
+
+                function typeinabout(){
+                if (iteration < txt.length) {
+                    var _re = txt.charAt(iteration)
+                    animated3.innerHTML += _re;
+                    setTimeout(typeinabout, speed);
+                    iteration++;
+                    return true;
+                    }return false;
+                }
+
+                const content = 'It’s My Estuary Day (IMED) is a beach clean up event at Kaiser Park - Saturday, May 31 (Rain date 6/1), from 9 AM to 2 PM.<br> This is a fantastic event to support our community, enjoy nature, and meet with people from New York!';
+                const about = document.getElementById("aboutcontent");
+                let iter = 0;
+
+                function typeinabout2(){
+                    if(iter < content.length){
+                        about.innerHTML += content.charAt(iter);
+                        iter++;
+                        setTimeout(typeinabout2, speed);
+                    }
+
+                }
+
+                document.addEventListener("DOMContentLoaded", (event)=> {
+                    typeinabout();
+                    typeinabout2();
+                    console.log(document.getElementById("check").style.width);
+                });
+                
+            </script>
         </div>
-    </div>
+        <div class="poster container-fluid">
+            <img src="{{url_for('static', filename='images/poster.png')}}" class="img-thumbnail" alt="Cinque Terre">
+        </div>
+        <div class="container-fluid" id="memory">
+            <div class="card img-display">
+            <img class="card-img-top card-img" src="{{url_for('static', filename='images/beachcleanup1.png')}}" alt="Card image">
+            <div class="card-body">
+                <h2 class="card-title">Verrazano Narrow Bridge</h4>
+                <p class="card-infos">A bridge that connects Staten Island and Brooklyn build in 1959 (65 years ago)<br>
+                    For More information, visit <a href="https://en.wikipedia.org/wiki/Verrazzano-Narrows_Bridge">Wikipedia</a>
 
-    <!--clear button gui and code-->
-<div class="modal fade" id="confirmResetModal" tabindex="-1" aria-labelledby="confirmResetModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="confirmResetModalLabel">Confirm Reset</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to clear the form? All data will be lost.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger" id="confirmResetBtn">Continue</button>
+                </p>
+                <h3 class="card-author">Taken by: Alex Liu, at Kaiser Park Coney Island</h3>
+            </div>
+            </div>
+        </div>
+
+
+
+        <div class="modal fade" id="modal-record">
+          <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+              <div class="header">
+                <h1 class="header-text-1">Estuary Beach Event<br>Register form</h1>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <form action="/record">
+                    <div class="div-input">
+                        <label for="Name" class="inputing">Name:*</label>
+                        <input type="text" class="input-first" name="first_name" placeholder="First Name*" required>
+                        <input type="text" class="input-last" name="last_name" placeholder="Last Name*" required>
+                        <label for="osis" class="inputing">OSIS/Student ID:</label>
+                        <input type="tel" name="osis" class="inputs" placeholder="Leave blank if you don't have one" maxlength="9" inputmode="numeric" pattern="\d{1,9}">
+                        <label for="email" class="inputing">Email:*</label>
+                        <input type="email" class="inputs" name="email" placeholder="example@email.com*" required>
+
+                        <!--start-->
+                    <label for="organization" class="inputing">Organization/School:</label> 
+                    <div class="dropdown" id="orgDropdown">
+                      <input type="text" class="dropdown-input" placeholder="Select or type organization..." name="organization"/>
+                      <span class="dropdown-arrow"></span>
+                      <div class="dropdown-list">
+                        <input type="text" class="dropdown-search" placeholder="Search organization/schools..." />
+                        <div class="dropdown-items-container"></div>
+                        <div class="dropdown-no-results" style="display:none;">
+                          Nothing found. Please enter your organizations/schools name and press enter.
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <!--menu for other org-->
+                    <div id="otherOrg">
+                      <label id="otherlabel" class="inputing" for="otherOrgInput">Other Organization:</label>
+                      <input class="inputs" type="text" id="otherOrgInput" name="organizations" placeholder="Enter organization name" />
+                    </div>
+
+
+                    <script>
+                      (function(){
+                        const dropdown = document.getElementById('orgDropdown');
+                        const dropdownInput = dropdown.querySelector('.dropdown-input');
+                        const dropdownList = dropdown.querySelector('.dropdown-list');
+                        const dropdownSearch = dropdown.querySelector('.dropdown-search');
+                        const dropdownItemsContainer = dropdown.querySelector('.dropdown-items-container');
+                        const noResultsMsg = dropdown.querySelector('.dropdown-no-results');
+                        const otherOrgDiv = document.getElementById('otherOrg');
+                        const otherOrgInput = document.getElementById('otherOrgInput');
+
+                        const organizations = [
+                          "Brooklyn Italians Soccer Club",
+                          "Billion Oyster Project",
+                          "City Parks Foundation",
+                          "Eubie Blake P.S 25",
+                          "Harbor School",
+                          "John Dewey High School",
+                          "Kingsborough Early College School",
+                          "NYSMEA",
+                          "Partnership for Parks",
+                          "St. Patricks School",
+                          "Wildlife Conservation Society",
+                          "Xaverian High School"
+                        ];
+
+                        let selectedOrg = null;
+
+                        function renderList(filter = '') {
+                          dropdownItemsContainer.innerHTML = '';
+                          const filtered = organizations.filter(org =>
+                            org.toLowerCase().includes(filter.toLowerCase())
+                          );
+
+                          if (filtered.length === 0) {
+                            noResultsMsg.style.display = 'block';
+                          } else {
+                            noResultsMsg.style.display = 'none';
+                            filtered.forEach(org => {
+                              const div = document.createElement('div');
+                              div.className = 'dropdown-item';
+                              div.textContent = org;
+                              div.addEventListener('click', () => {
+                                selectOrganization(org);
+                              });
+                              dropdownItemsContainer.appendChild(div);
+                            });
+
+                            const otherDiv = document.createElement('div');
+                            otherDiv.className = 'dropdown-item';
+                            otherDiv.textContent = 'Other';
+                            otherDiv.style.fontStyle = 'italic';
+                            otherDiv.addEventListener('click', () => {
+                              selectOrganization('Other');
+                            });
+                            dropdownItemsContainer.appendChild(otherDiv);
+                          }
+                        }
+
+                        function selectOrganization(orgName) {
+                          selectedOrg = orgName;
+                          dropdownInput.value = orgName === 'Other' ? '' : orgName;
+                          dropdown.classList.remove('open');
+                          dropdownSearch.value = '';
+                          renderList();
+                          if (orgName === 'Other') {
+                            otherOrgDiv.style.display = 'block';
+                            otherOrgInput.value = '';
+                            otherOrgInput.focus();
+                          } else {
+                            otherOrgDiv.style.display = 'none';
+                            otherOrgInput.value = '';
+                          }
+                        }
+
+                        dropdownInput.addEventListener('click', () => {
+                          dropdown.classList.toggle('open');
+                          dropdownSearch.focus();
+                          renderList();
+                        });
+
+                        dropdownSearch.addEventListener('input', () => {
+                          const val = dropdownSearch.value.trim();
+                          renderList(val);
+
+                          if (val.length > 0 && !organizations.some(org => org.toLowerCase() === val.toLowerCase())) {
+                            noResultsMsg.style.display = 'block';
+                          } else {
+                            noResultsMsg.style.display = 'none';
+                          }
+                        });
+
+                        document.addEventListener('click', e => {
+                          if (!dropdown.contains(e.target)) {
+                            dropdown.classList.remove('open');
+
+                            const typed = dropdownSearch.value.trim();
+                            if (typed.length > 0 && !organizations.some(org => org.toLowerCase() === typed.toLowerCase())) {
+                              selectOrganization('Other');
+                              otherOrgInput.value = typed;
+                              dropdownInput.value = typed;
+                            }
+                          }
+                        });
+
+                        dropdownInput.addEventListener('keydown', e => {
+                          e.preventDefault();
+                        });
+                      })();
+                    </script>
+                    <!--end-->
+
+                    <p class="required-note">* Required fields</p>
+                    <div class="div-reset">
+                        <button type="reset" class="record-clear" data-bs-toggle="modal" data-bs-target="#confirmResetModal">
+                            <img class="record-clear-image" src="{{url_for('static', filename='images/restart.png')}}" alt="Reset">
+                        </button>
+                        <button type="submit" class="record-submit">Record</button>
+                    </div>
+                </form>
+            </div>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <h5 class="footer-text">Made by Alex</h5>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+
+  <div class="modal" id="Admin-login">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Admin panel</h4>
+        </div>
+
+        <div class="modal-body">
+          <form action="/admin">
+            <label for="username" class="inputing">Admin User</label>
+            <input type="text" class="inputs" name="username" required>
+            <label for="username" class="inputing">Password</label>
+            <input type="text" class="inputs" name="password" required>
+            <button type="submit" class="btn btn-success">Login</button>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <p style="float:left;display: flex;">Login created By Alexander</p>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+
       </div>
     </div>
   </div>
-</div>
-    <!--warning menu-->
-<script>
-    document.getElementById("confirmResetBtn").addEventListener("click", function () {
-        const form = document.querySelector("form");
-        form.reset();
-        const resetModal = bootstrap.Modal.getInstance(document.getElementById('confirmResetModal'));
-        resetModal.hide();
-    });
-</script>
-    <!--END OF clear button gui and code-->
+
+
+    </body>
+    <footer class=" text-center text-white" style="background-color:#3c8dbc;" id="footer">
+  <div class="container p-4">
+
+    <section class="mb-4">
+      <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998" href="https://www.facebook.com/BrooklynJohnDeweyHsInfo/" role="button"><i class="fab fa-facebook-f"><img src="{{url_for('static', filename='images/facebook.svg')}}"></i></a>
+      <a class="btn btn-primary btn-floating m-1" style="background-color: #f81c1c" href="https://www.johndeweyhighschool.org/" role="button"><i class="fab fa-twitter"><img src="{{url_for('static', filename='images/jdhs.png')}}"></i></a>
+      <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac" href="https://www.instagram.com/johndeweybk/" role="button"><i class="fab fa-instagram"><img src="{{url_for('static', filename='images/instagram.png')}}"></i></a>
+      <a class="btn btn-primary btn-floating m-1" style="background-color: #333333" href="https://github.com/Hahalxl" role="button"><i class="fab fa-github"><img src="{{url_for('static', filename='images/github.png')}}"></i></a>
+    </section>
+
+
+    <section class="mb-4">
+      <p>
+        Thank you for participation in this event! Look below for more information related to this website!
+      </p>
+    </section>
 
 
 
-</body>
+    <section class="">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">John Dewey High School</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a href="https://www.johndeweyhighschool.org/" class="text-white">Main website</a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/johndeweybk/" class="text-white">Instagram</a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/BrooklynJohnDeweyHsInfo/" class="text-white">Facebook</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">About us</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a href="https://github.com/Hahalxl" class="text-white">Alexander's Github</a>
+            </li>
+            <li>
+              <a href="https://github.com/abcd123alex" class="text-white">Alex's Github</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Other organizations</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a href="https://nysmea.wildapricot.org/" class="text-white">New York State Marine Education Association</a>
+            </li>
+            <li>
+              <a href="https://cityparksfoundation.org/" class="text-white">City Parks Foundation</a>
+            </li>
+            <li>
+              <a href="https://www.billionoysterproject.org/" class="text-white">Billion Oyster Project</a>
+            </li>
+            <li>
+              <a href="https://nyaquarium.com/" class="text-white">New York Aquarium</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Tools</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a href="https://ngrok.com/" class="text-white">Ngrok</a>
+            </li>
+            <li>
+              <a href="https://www.python.org/" class="text-white">Python</a>
+            </li>
+            <li>
+              <a href="https://git-scm.com/" class="text-white">Git</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+  </div>
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+    Backend: Alexander Liang He<br>
+    HTML: Alexander Liang He & Alex Liu
+  </div>
+
+</footer>
 </html>
