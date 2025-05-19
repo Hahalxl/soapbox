@@ -1,4 +1,4 @@
-from library.function.functions import _config
+from library.function.functions import _config, _config_admin
 class Person:
     def __init__(self, name:str, osis:str, email:str, organization:str="John Dewey High School", fill:str="="):
         self.name = name
@@ -55,6 +55,11 @@ class Admin:
     def __init__(self, name:str, password:str):
         self.name = name
         self.password = password
+
+    def ifadmin(self):
+        admin = _config_admin()
+        return self.name == admin["name"] and self.password == admin["password"]
+
 
 
 if (__name__ == "__main__"):

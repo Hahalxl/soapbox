@@ -12,19 +12,17 @@ body {
   text-align: center;
   border-bottom: 1px solid #ccd0da;
   margin-bottom: 20px;
+  width:100%;
 }
 
 .header-text-1 {
-  margin: 0;
   font-size: 28px;
   color: #4c4f69;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.header-text-2 {
-  margin: 5px 0 0 0;
-  font-size: 24px;
-  color: #5c5f77;
-}
 
 .body {
   padding: 20px;
