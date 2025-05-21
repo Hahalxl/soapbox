@@ -1,3 +1,5 @@
+import random
+from email.utils import collapse_rfc2231_value
 from os import getcwd
 
 def _config() -> dict:
@@ -33,8 +35,16 @@ def newfile() -> bool:
     print("file created at " + config["dir"] + "\nNamed: " + config["name"])
     return True
 
+def colorhex(colors:list[int]) ->str:
+    _re = "#"
+
+    for i in colors:
+        _re += hex(i)[2:] if len(hex(i)[2:]) > 1 else "0" + hex(i)[2:]
+
+    return _re
+
+def randcol()->str:
+    return colorhex([random.randint(40, 150) for _ in range(3)])
 
 if(__name__ == "__main__"):
     import os
-    os.chdir("C:\\Users\\Ronan\\Coding\\Python\\Flask\\531")
-    newfile()

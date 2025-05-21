@@ -1,3 +1,5 @@
+from logging import exception
+
 from flask import Flask, render_template, request, url_for, redirect, session
 from library.person.person import Person, Admin
 from library.function import functions
@@ -18,7 +20,8 @@ def index():
         _person = session["_person"]
         if(_person is not None):
             _person_info = json.loads(_person)
-            return render_template("index.html", json_info=_person_info)
+            _person_info["color"] = functions.randcol()
+            return render_template("information.html", _person=_person_info)
     except KeyError:
         pass
     return render_template("index.html")
@@ -70,14 +73,20 @@ def admin_login():
 
 @app.route("/admin-panel")
 def admin():
-    _info = session["admin"]
-    perm = json.loads(_info)
+    try:
+        _info = session["admin"]
+        perm = json.loads(_info)
+    except Exception as e:
+        session["_error"] = e
+        return redirect(url_for("error"))
 
     if(perm["name"]):
         return render_template("admin.html")
 
     session["_error"] = "Unauthorize request"
     return redirect(url_for("error"))
+
+
 
 if(__name__ == "__main__"):
     app.run(host="0.0.0.0", port=5000, debug=True )
