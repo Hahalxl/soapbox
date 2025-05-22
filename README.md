@@ -10,11 +10,11 @@
 
 3. Type this in console 
 
-```bash
-py sigma.py
-```
+    ```bash
+    py sigma.py
+    ```
 
-4. http://127.0.0.1:5000/
+4. Link: http://127.0.0.1:5000/
 
 # How to Push Changes to GitHub
 
