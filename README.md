@@ -8,6 +8,14 @@
 
 2. Open VScode
 
+3. Type this in console 
+
+```bash
+py sigma.py
+```
+
+4. http://127.0.0.1:5000/
+
 # How to Push Changes to GitHub
 
 1. Make sure you’re in your project folder on your local machine:
