@@ -3,12 +3,16 @@
 1. Open CMD and type this in
 
     ```bash
+    cd ./desktop
+    ```
+
+    ```bash
     git clone https://github.com/Hahalxl/PythonFlasking531/
     ```
 
-2. Open VScode
+2. Open VScode and open file on desktop
 
-3. Type this in console 
+3. Type this in VScode console 
 
     ```bash
     py sigma.py
