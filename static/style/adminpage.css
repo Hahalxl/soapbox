@@ -1,0 +1,91 @@
+.admin-panel{
+    border: #000 2px solid;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.panel-header{
+    width: 100%;
+    height: fit-content;
+    background-color: #ececec;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom: #000 2px solid;
+    display: flex;
+}
+.panel-header-text{
+    display: block;
+    text-align: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+.displaying{
+    display: flex;
+    width: 100%;
+    height: max-content;
+    margin-bottom: 5%;
+}
+
+.displaying .item{
+    margin-top: 5%;
+    width: 33%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    border-radius: 20px;
+    box-shadow: #000 3px 2px 1px;
+}
+
+.item1{
+    background-color: #00d;
+    border: #0cf 5px;
+    color: #fff;
+    border-style:solid;
+    border-radius: 20px;
+}
+.item2{
+    background-color: #f00;
+    border: #faa 5px;
+    color: #fff;
+    border-style:solid;
+    border-radius: 20px;
+}
+.item3{
+    background-color: #afc;
+    border: #bfb 5px;
+    color: #fff;
+    border-style:solid;
+    border-radius: 20px;
+}
+
+.itemtitle, .itemcontent, .itemuit{
+    margin-left: 5%;
+    display: block;
+    margin-bottom: 10px;
+}
+.itemunit{
+    text-align: center;
+}
+.itemtitle{
+    padding-left: 2%;
+    margin-top: 5px;
+    width: 100%;
+    font-size: 18px;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: 600;
+}
+
+.itemcontent{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    text-align: center;
+}
+.spliter{
+    border:#000 2px solid;
+    border-radius: 100%;
+    margin: 5%;
+}

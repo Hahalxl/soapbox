@@ -7,7 +7,7 @@ from library.function import functions
 import secrets
 import logging
 import json, os
-log = logging.getLogger('werkzeug')
+log = logging.getLogger("werkzeug")
 log.disabled = True
 app = Flask(__name__)
 app.secret_key = secrets.token_urlsafe(16)
@@ -21,7 +21,9 @@ def index():
         if(_person is not None):
             _person_info = json.loads(_person)
             _person_info["color"] = functions.randcol()
+            session.clear()
             return render_template("information.html", _person=_person_info)
+        
     except KeyError:
         pass
     return render_template("index.html")
@@ -89,4 +91,4 @@ def admin():
 
 
 if(__name__ == "__main__"):
-    app.run(host="0.0.0.0", port=5000, debug=True )
+    app.run(host="0.0.0.0", port=5000, debug=True)
