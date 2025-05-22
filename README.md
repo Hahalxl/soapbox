@@ -3,7 +3,7 @@
 1. Open CMD and type this in
 
     ```bash
-    git clone https://github.com/Hahalxl/PythonFlasking531/tree/main
+    git clone https://github.com/Hahalxl/PythonFlasking531/
     ```
 
 2. Open VScode
