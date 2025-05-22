@@ -1,3 +1,13 @@
+# How to download
+
+1. Open CMD and type this in
+
+    ```bash
+    git clone https://github.com/Hahalxl/PythonFlasking531/tree/main
+    ```
+
+2. Open VScode
+
 # How to Push Changes to GitHub
 
 1. Make sure you’re in your project folder on your local machine:
