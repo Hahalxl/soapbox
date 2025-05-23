@@ -77,6 +77,7 @@ body {
 }
 
 @media (max-width: 768px) {
+  
   .header-text-1 {
     width: 80%;
     font-size: 1.5rem;
@@ -177,6 +178,7 @@ body {
 }
 
 .dropdown {
+
   position: relative;
   width: 100%;
   font-family: inherit;
@@ -282,7 +284,7 @@ body {
   font-family: "Segoe UI", "Roboto", Arial, sans-serif;
 }
 
-/* Sidebar styles */
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -458,9 +460,11 @@ body {
   transition: background-color 0.3s ease;
   margin-bottom: 1.5rem;
   width: auto; 
-  display: inline-block; 
+  display: block; 
   text-align: center; 
   white-space: nowrap; 
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* mobile */
@@ -595,10 +599,13 @@ footer .btn-floating img {
 
 
 .sidebar-toggle-btn {
-  top: 80px; 
+  top: 50px; 
 }
 
 
 #mainContent {
   margin-top: 0; 
+}
+.footer-end{
+  margin-top: 10px;
 }
