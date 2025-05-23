@@ -7,7 +7,7 @@ from library.function import functions
 import secrets
 import logging
 import json, os
-log = logging.getLogger("werkzeug")
+log = logging.getLogger('werkzeug')
 log.disabled = True
 app = Flask(__name__)
 app.secret_key = secrets.token_urlsafe(16)
@@ -21,18 +21,20 @@ def index():
         if(_person is not None):
             _person_info = json.loads(_person)
             _person_info["color"] = functions.randcol()
+            _person_info["recorded"] = session['_recorded']
             session.clear()
             return render_template("information.html", _person=_person_info)
-        
     except KeyError:
         pass
     return render_template("index.html")
 
 @app.route("/error")
 def error():
-    if(session['_error']):
-        return render_template("error.html", error=session["_error"])
-    return redirect(url_for("index"))
+    try:
+        if(session['_error']):
+            return render_template("error.html", error=session["_error"])
+    except Exception as _:
+        return redirect(url_for("index"))
 
 @app.route("/record")
 def record():
@@ -45,12 +47,15 @@ def record():
 
     if(_person.check()):
         print("Returned " + _person.name)
+        session['_person'] = json.dumps(_person.asjson())
+        session['_recorded'] = True
         return redirect(url_for("index"))
 
     print("Recorded: ")
     print(_person)
     saved = _person.save()
     if(saved):
+        session['_recorded'] = False
         session['_person'] = json.dumps(_person.asjson())
         print("Clearing Console....")
         # CHANGE THIS TO CLEAR IF MAC MUST DO OR IT BREAKS
@@ -91,4 +96,4 @@ def admin():
 
 
 if(__name__ == "__main__"):
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True )
