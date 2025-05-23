@@ -34,33 +34,46 @@
     <li><a href="#memory">Memory</a></li>
     <li><a href="#footer">Footer</a></li>
   </ul>
-  <button class="btn-admin sidebar-btn" type="button" data-bs-toggle="modal" data-bs-target="#admin-login">Admin login</button>
-  <button class="record-btn sidebar-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-record" id="check">Record yourself!</button>
+  <button class="btn-admin sidebar-btn" type="button" data-bs-toggle="modal" data-bs-target="#admin-login" id="adminbtn">Admin login</button>
+  <button class="record-btn sidebar-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-record" id="recordbtn2">Record yourself!</button>
 </nav>
 
 <!--  black -->
 <div class="sidebar-overlay"></div>
 
   <script>
-    const sidebar = document.getElementById('sidebar');
-const toggleBtn = document.getElementById('sidebarToggle');
-const closeBtn = document.getElementById('sidebarClose');
-const overlay = document.querySelector('.sidebar-overlay');
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.getElementById('sidebarToggle');
+  const closeBtn = document.getElementById('sidebarClose');
+  const overlay = document.querySelector('.sidebar-overlay');
+  const admin = document.getElementById('adminbtn');
+  const record = document.getElementById('recordbtn2');
 
-toggleBtn.addEventListener('click', () => {
-  sidebar.classList.add('active');
-  toggleBtn.classList.add('hidden');
-});
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.add('active');
+      toggleBtn.classList.add('hidden');
+    });
 
-closeBtn.addEventListener('click', () => {
-  sidebar.classList.remove('active');
-  toggleBtn.classList.remove('hidden');
-});
+    closeBtn.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+      toggleBtn.classList.remove('hidden');
+    });
 
-overlay.addEventListener('click', () => {
-  sidebar.classList.remove('active');
-  toggleBtn.classList.remove('hidden');
-});
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+      toggleBtn.classList.remove('hidden');
+    });
+
+    admin.addEventListener('click', () =>{
+      sidebar.classList.remove('active');
+      toggleBtn.classList.remove('hidden');
+    });
+    record.addEventListener('click', () =>{
+      sidebar.classList.remove('active');
+      toggleBtn.classList.remove('hidden');
+    });
+
+
   </script>
 
   <main id="mainContent">
@@ -192,12 +205,14 @@ overlay.addEventListener('click', () => {
           </div>
         </div>
       </section>
-    </div>
-    
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+
+      <div class="text-center p-3 footer-end" style="background-color: rgba(0, 0, 0, 0.2)">
       Backend: Alexander Liang He<br>
       Frontend: Alexander Liang He & Alex Liu
+      </div>
     </div>
+    
+
   </footer>
   </main>
 
@@ -361,6 +376,32 @@ overlay.addEventListener('click', () => {
 
         <div class="modal-footer">
           <h5 class="footer-text">Made by Alex</h5>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="admin-login">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Admin Panel</h4>
+        </div>
+
+        <div class="modal-body">
+          <form action="/admin">
+            <label for="username" class="inputing">Admin Username</label>
+            <input type="text" class="inputs" name="username" required>
+            <label for="password" class="inputing">Password</label>
+            <input type="password" class="inputs" name="password" required>
+            <button type="submit" class="btn btn-success">Login</button>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <p style="float:left;display: flex;">Login created by Alexander</p>
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
