@@ -12,7 +12,7 @@
 
 2. Open VScode and open file on desktop
 
-3. Press that fuckass run code button ![image](https://github.com/user-attachments/assets/cca4968f-4591-48b4-b5a4-8b87afc0cf81)
+3. Press that run code button ![image](https://github.com/user-attachments/assets/cca4968f-4591-48b4-b5a4-8b87afc0cf81)
 
 
 4. Link: http://127.0.0.1:5000/
