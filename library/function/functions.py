@@ -19,12 +19,12 @@ def _config_admin() -> dict:
 def newfile() -> bool:
     config = _config()
     try:
-        with open(f"{config["dir"] + config["name"]}", 'x') as file:
+        with open(f"{config['dir'] + config['name']}", 'x') as file:
             file.write("name,osis,email,organization\n")
             file.close()
     except FileExistsError:
         if(__name__ == "__main__"):
-            with open(f"{config["dir"] + config["name"]}", 'w') as file:
+            with open(f"{config['dir'] + config['name']}", 'w') as file:
                 file.write("name,osis,email,organization\n")
                 file.close()
             print("__main__ Bypassed!")

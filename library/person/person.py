@@ -13,20 +13,20 @@ class Person:
         longest = max(size)
         spacing = (longest + len("Organization:")) #I JUST GOT LAZY HERE, PLEASE DON'T JUDGE. I KNOW THE RESULT IS 12!!!!
         filler = self.fill * (spacing + name_size[2])
-        return f"{filler}\n||Name:{self.name + " "*(spacing - (len(self.name) + name_size[0]))}||\n||Osis:{self.osis + " "*(spacing - (len(self.osis) + name_size[1]))}||\n||Email:{self.email + " "*(spacing - (len(self.email) + name_size[2]))}||\n||Organization:{self.organization + " "*(spacing - (len(self.organization) + name_size[3]))}||\n{filler}\n\n"
+        return f'{filler}\n||Name:{self.name + " "*(spacing - (len(self.name) + name_size[0]))}||\n||Osis:{self.osis + " "*(spacing - (len(self.osis) + name_size[1]))}||\n||Email:{self.email + " "*(spacing - (len(self.email) + name_size[2]))}||\n||Organization:{self.organization + " "*(spacing - (len(self.organization) + name_size[3]))}||\n{filler}\n\n'
 
 
     def save(self) -> bool:
         config = _config()
         infos = f"{self.name},{self.osis},{self.email},{self.organization}\n"
         try:
-            with open(f"{config["dir"] + config["name"]}", 'a') as file:
+            with open(f"{config['dir'] + config['name']}", 'a') as file:
                 file.write(infos)
                 file.close()
         except Exception as E:
-            print(f"Falied to save to {config["dir"] + config["name"]}\nReason{E}")
+            print(f"Falied to save to {config['dir'] + config['name']}\nReason{E}")
             return False
-        print(f"Successfully saved to {config["dir"] + config["name"]}")
+        print(f"Successfully saved to {config['dir'] + config['name']}")
         return True
 
 
@@ -34,7 +34,7 @@ class Person:
         # Incase they Repeat
         import pandas as pd
         config = _config()
-        config["filename"] = f"{config["dir"] + config["name"]}"
+        config["filename"] = f"{config['dir'] + config['name']}"
         df = pd.read_csv(config["filename"])
         df["osis"] = df["osis"].astype(str)
         person = df.loc[(df["name"] == self.name) & (df["osis"] == (self.osis)), :]
