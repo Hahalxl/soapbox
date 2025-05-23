@@ -24,6 +24,7 @@
                 <h3 class="header-text left">It's my Estuary Day</h3>
                 <h3 class="header-text right">{{_person["name"]}}</h3>
             </div>
+
             <div class="id-content">
                 <div class="display-image">
                     <img src="../static/images/guest.png" alt="" class="id-image">
@@ -46,6 +47,9 @@
             </div>
             <div class="id-footer" id="id-footer">
                 <h3 class="footer-text">Thank you, for your service and participation in It's My Estuary Day!</h3>
+                {% if _person["recorded"] %}
+                <h3 class="footer-text">Your information is recorded already, if there is a error then tell Alex to remove it.</h3>
+                {% endif %}
             </div>
             <script>
                 const header = document.getElementById("id-header");
