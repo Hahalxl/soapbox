@@ -12,11 +12,8 @@
 
 2. Open VScode and open file on desktop
 
-3. Type this in VScode console 
+3. Press that fuckass run code button ![image](https://github.com/user-attachments/assets/cca4968f-4591-48b4-b5a4-8b87afc0cf81)
 
-    ```bash
-    py sigma.py
-    ```
 
 4. Link: http://127.0.0.1:5000/
 
