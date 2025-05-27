@@ -19,17 +19,17 @@
                 <div class="item item1">
                     <h3 class="itemtitle">Total</h3>
                     <h3 class="itemcontent">{{info['total']}}<h3>
-                    <h5 class="itemunit">Persons</h5>
+                    <h5 class="itemunit">Entries</h5>
                 </div>
                 <div class="item item2">
                     <h3 class="itemtitle">Dewey</h3>
                     <h3 class="itemcontent">{{info['dewey']}}</h3>
-                    <h5 class="itemunit">Students</h5>
+                    <h5 class="itemunit">Entries</h5>
                 </div>
                 <div class="item item3">
                     <h3 class="itemtitle">Other</h3>
                     <h3 class="itemcontent">{{info['other']}}</h3>
-                    <h5 class="itemunit">Persons</h5>
+                    <h5 class="itemunit">Entries</h5>
                 </div>
             </div>
             <div class="spliter"></div>
@@ -40,11 +40,39 @@
                 <div class="function-collection">
                     <div class="set func1">
                         <h3 class="function-label">Remove</h3>
-                        <button class="function-btn" data-bs-toggle="modal" data-bs-target="#modal-delete" >Click Here</button>
+                        <button class="function-btn" data-bs-toggle="modal" data-bs-target="#modal-command" id="removal">Click Here</button>
                     </div>
                     <div class="set func2">
                         <h3 class="function-label">Edit</h3>
-                        <button class="function-btn" data-bs-toggle="modal" data-bs-target="#modal-edit">Click Here</button>
+                        <button class="function-btn" data-bs-toggle="modal" data-bs-target="#modal-command" id="edit" >Click Here</button>
+                        <script>
+                          function edit(){
+                            let target = document.getElementById("modal-command-form");
+                            let extend = document.getElementById("extend");
+                            let text = document.getElementById("spilter-text");
+                            target.action = "/edit";
+                            extend.style.display = "block";
+                            text.style.display = "block";
+                            text.style.borderStyle = "solid"
+                          }
+                          function remove(){
+                            let target = document.getElementById("modal-command-form");
+                            let extend = document.getElementById("extend");
+                            let text = document.getElementById("spilter-text");
+                            target.action = "/delete";
+                            extend.style.display = "none";
+                            text.style.display = "none";
+                            text.style.borderStyle = "hidden";
+                          }
+                          const editbtn = document.getElementById("edit");
+                          const removebtn = document.getElementById("removal");
+                          editbtn.addEventListener("click", (event) => {
+                            edit();
+                          });
+                          removebtn.addEventListener("click", (event) => {
+                            remove();
+                          });
+                        </script>
                     </div>
                     <div class="set func4">
                         <h3 class="function-label">Download</h3>
@@ -54,7 +82,7 @@
             </div>
             <div class="output-gui">
                 <div class="output-header">
-                    <h3 class="output-title">Output Terminal</h3>
+                    <h3 class="output-title">Terminal</h3>
                 </div>
                 <div class="output-content">
                     <div class="output-input">
@@ -86,23 +114,30 @@
             typeinabout2();
         });
     </script>
-      <div class="modal fade" id="modal-delete">
-    <div class="modal-dialog modal-fullscreen">
-      <div class="modal-content">
-        <div class="header">
-          <h1 class="header-text-1">Estuary Beach Event<br>removal Form</h1>
-        </div>
-
-        <div class="modal-body">
-          <form action="/delete">
-            <div class="div-input">
+    <div class="modal fade" id="modal-command">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Command modal</h4>
+          </div>
+          <div class="modal-body">
+          <form id="modal-command-form">
+              <label for="Name" class="inputing">Name:*</label>
+              <input type="text" class="input-first" name="first_name" placeholder="First Name*"  required>
+              <input type="text" class="input-last" name="last_name" placeholder="Last Name*"  required>
+              <label for="osis" class="inputing">OSIS/Student ID:</label>
+              <input type="tel" name="osis" class="inputs" placeholder="Leave blank if None" maxlength="9" inputmode="numeric" pattern="\d{1,9}">
+              <div class="spliter" id="spilter-text">
+              </div>
+              <div id="extend">
+                <h3>New form</h3>
               <label for="Name" class="inputing">Name:*</label>
               <input type="text" class="input-first" name="first_name" placeholder="First Name*"  required>
               <input type="text" class="input-last" name="last_name" placeholder="Last Name*"  required>
               <label for="osis" class="inputing">OSIS/Student ID:</label>
               <input type="tel" name="osis" class="inputs" placeholder="Leave blank if you don't have one" maxlength="9" inputmode="numeric" pattern="\d{1,9}">
               <label for="email" class="inputing">Email:*</label>
-              <input type="email" class="inputs" name="email" placeholder="example@email.com*" required>
+              <input type="email" class="inputs" name="email" placeholder="example@email.com*"required>
 
               <label for="organization" class="inputing">Organization/School:</label> 
               <div class="dropdown" id="orgDropdown">
@@ -119,86 +154,10 @@
 
               <div id="otherOrg">
                 <label id="otherlabel" class="inputing" for="otherOrgInput">Other Organization:</label>
-                <input class="inputs" type="text" id="otherOrgInput" name="organizations" placeholder="Enter organization name" />
+                <input class="inputs" type="text" id="otherOrgInput" name="organizations" placeholder="Enter organization name" pattern="^[a-zA-Z0-9]" />
               </div>
 
-              
-
-              <p class="required-note">* Required fields</p>
-              <div class="div-reset">
-                  <button type="reset" class="record-clear" data-bs-toggle="modal" data-bs-target="#confirmResetModal">
-                      <img class="record-clear-image" src="{{url_for('static', filename='images/restart.png')}}" alt="Reset">
-                  </button>
-                  <button type="submit" class="record-submit">Record</button>
-              </div>
-          </form>
-        </div>
-
-        <div class="modal-footer">
-          <h5 class="footer-text">Made by Alex</h5>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    <div class="modal fade" id="modal-edit">
-    <div class="modal-dialog modal-fullscreen">
-      <div class="modal-content">
-        <div class="header">
-          <h1 class="header-text-1">Estuary Beach Event<br>edit Form</h1>
-        </div>
-
-          <div class="modal-body">
-            <form action="/edit">
-              <div class="div-input">
-                <label for="Name" class="inputing">Name:*</label>
-                <input type="text" class="input-first" name="first_name" placeholder="First Name*"  required>
-                <input type="text" class="input-last" name="last_name" placeholder="Last Name*"  required>
-                <label for="osis" class="inputing">OSIS/Student ID:</label>
-                <input type="tel" name="osis" class="inputs" placeholder="Leave blank if you don't have one" maxlength="9" inputmode="numeric" pattern="\d{1,9}">
-                <label for="email" class="inputing">Email:*</label>
-                <input type="email" class="inputs" name="email" placeholder="example@email.com*"  required>
-
-                <label for="organization" class="inputing">Organization/School:</label> 
-                <div class="dropdown" id="orgDropdown">
-                  <input type="text" class="dropdown-input" placeholder="Select or type organization..." name="organization"/>
-                  <span class="dropdown-arrow"></span>
-                  <div class="dropdown-list">
-                    <input type="text" class="dropdown-search" placeholder="Search organization/schools..." />
-                    <div class="dropdown-items-container"></div>
-                    <div class="dropdown-no-results" style="display:none;">
-                      No results found. Please enter your organization/school name and press enter.
-                    </div>
-                  </div>
-                </div>
-
-                <div id="otherOrg">
-                  <label id="otherlabel" class="inputing" for="otherOrgInput">Other Organization:</label>
-                  <input class="inputs" type="text" id="otherOrgInput" name="organizations" placeholder="Enter organization name" />
-                </div>
-
-
-                <p class="required-note">* Required fields</p>
-                <div class="div-reset">
-                    <button type="reset" class="record-clear" data-bs-toggle="modal" data-bs-target="#confirmResetModal">
-                        <img class="record-clear-image" src="{{url_for('static', filename='images/restart.png')}}" alt="Reset">
-                    </button>
-                    <button type="submit" class="record-submit">Record</button>
-                </div>
-            </form>
-          </div>
-
-          <div class="modal-footer">
-            <h5 class="footer-text">Made by Alex</h5>
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script>
+              <script>
                 (function(){
                   const dropdown = document.getElementById('orgDropdown');
                   const dropdownInput = dropdown.querySelector('.dropdown-input');
@@ -308,6 +267,17 @@
                   });
                 })();
               </script>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="record-submit">Record</button>
+            </form>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 </body>
 
 </html>
