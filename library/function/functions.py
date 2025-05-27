@@ -2,6 +2,9 @@ import random
 from email.utils import collapse_rfc2231_value
 from os import getcwd
 
+import pandas as pd
+
+
 def _config() -> dict:
     import json
     with open("config.json") as configed:
@@ -46,5 +49,17 @@ def colorhex(colors:list[int]) ->str:
 def randcol()->str:
     return colorhex([random.randint(40, 150) for _ in range(3)])
 
+def information() -> dict:
+    import pandas
+    config = _config()
+    df = pd.read_csv(f"{config['dir'] + config['name']}")
+    total = len(df)
+    dewey = len(df.loc[(df.organization == "John Dewey High School"), :])
+    other = len(df.loc[(df.organization != "John Dewey High School"), :])
+    return {"total": total, "dewey":dewey,"other":other}
+
 if(__name__ == "__main__"):
     import os
+    os.chdir("../../")
+    print(information())
+

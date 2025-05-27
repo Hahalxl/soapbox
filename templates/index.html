@@ -123,18 +123,50 @@
           typeinabout();
           typeinabout2();
         });
+
       </script>
     </div>
+
 
     <!-- Event poster -->
     <div class="poster container-fluid">
       <img src="{{url_for('static', filename='images/poster.png')}}" class="img-thumbnail" alt="Event Poster">
     </div>
 
+    <div class="poster container-fluid">
+      <h1 style="font-size: 32px;text-align: center;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Map to Kaiser Park from John Dewey High School!</h1>
+      <img src="{{url_for('static', filename='images/map.png')}}" class="img-thumbnail" alt="Event Poster">
+    </div>
+
+
     <!-- Memory section -->
     <div class="container-fluid" id="memory">
       <div class="card img-display">
         <img class="card-img-top card-img" src="{{url_for('static', filename='images/beachcleanup1.png')}}" alt="Beach Cleanup">
+        <div class="card-body">
+          <h2 class="card-title">Verrazano-Narrows Bridge</h2>
+          <p class="card-infos">A bridge connecting Staten Island and Brooklyn, completed in 1959 (65 years ago).<br>
+            For more information, visit <a href="https://en.wikipedia.org/wiki/Verrazzano-Narrows_Bridge">Wikipedia</a>
+          </p>
+          <h3 class="card-author">Photo by: Alex Liu, at Kaiser Park, Coney Island</h3>
+        </div>
+      </div>
+    </div>
+        <div class="container-fluid" id="memory">
+      <div class="card img-display">
+        <img class="card-img-top card-img" src="https://media.discordapp.net/attachments/1163625200412270794/1376322234771046470/AP1GczNMOVit2MxIVfCRBwA8NVVMpghMzNQycqmayDMte7nt-6ThT26dLH_11pa240Fb9MSEdnw79LmX0A8qgkxIhlAzRBW99KMLi3oYJbpfj0i0zFfKYVgf_2vK615AJm4IXu1p2_ya4636QMHX3BwduVpg0ww1260-h945-s-no-gm.png?ex=6834e777&is=683395f7&hm=bb1598dcd7f7d16b5671f4bebecbd18406865e334580688a116cd7d56518a87c&=&format=webp&quality=lossless" alt="Beach Cleanup">
+        <div class="card-body">
+          <h2 class="card-title">Verrazano-Narrows Bridge</h2>
+          <p class="card-infos"><br>
+            For more information, visit <a href="https://en.wikipedia.org/wiki/Verrazzano-Narrows_Bridge">Wikipedia</a>
+          </p>
+          <h3 class="card-author">Photo by: Ms.Wood, at Kaiser Park, Coney Island</h3>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid" id="memory">
+      <div class="card img-display">
+        <img class="card-img-top card-img" src="https://media.discordapp.net/attachments/1163625200412270794/1376309654744727583/AP1GczOlbWK9XX1VAQbnCjO6zjXsvtgJYd2xF1EwnoL6l-KRqH_KpySq0JILsV9hwCCkjqeDFKZ3tygr0leWOn1G4pLYm7MTluyVguor6_vrvMztGqRARUyE2atsUvaTeqAp32FxvC6ejONLcxQq-Oqh8X1H7gw1260-h945-s-no-gm.png?ex=6834dbc0&is=68338a40&hm=0f45b9660aa2824226f5e904bda94b6c061e0bee799b5844c6b9c278c3b4e620&=&format=webp&quality=lossless"  alt="Beach Cleanup">
         <div class="card-body">
           <h2 class="card-title">Verrazano-Narrows Bridge</h2>
           <p class="card-infos">A bridge connecting Staten Island and Brooklyn, completed in 1959 (65 years ago).<br>
@@ -158,7 +190,7 @@
         <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac" href="https://www.instagram.com/johndeweybk/" role="button">
           <img src="{{url_for('static', filename='images/instagram.png')}}" alt="Instagram">
         </a>
-        <a class="btn btn-primary btn-floating m-1" style="background-color: #333333" href="https://github.com/Hahalxl" role="button">
+        <a class="btn btn-primary btn-floating m-1" style="background-color: #4d4d4d" href="https://github.com/Hahalxl" role="button">
           <img src="{{url_for('static', filename='images/github.png')}}" alt="GitHub">
         </a>
       </section>
@@ -228,12 +260,12 @@
           <form action="/record">
             <div class="div-input">
               <label for="Name" class="inputing">Name:*</label>
-              <input type="text" class="input-first" name="first_name" placeholder="First Name*" required>
-              <input type="text" class="input-last" name="last_name" placeholder="Last Name*" required>
+              <input type="text" class="input-first" name="first_name" placeholder="First Name*"  required>
+              <input type="text" class="input-last" name="last_name" placeholder="Last Name*"  required>
               <label for="osis" class="inputing">OSIS/Student ID:</label>
               <input type="tel" name="osis" class="inputs" placeholder="Leave blank if you don't have one" maxlength="9" inputmode="numeric" pattern="\d{1,9}">
               <label for="email" class="inputing">Email:*</label>
-              <input type="email" class="inputs" name="email" placeholder="example@email.com*" required>
+              <input type="email" class="inputs" name="email" placeholder="example@email.com*" pattern="" required>
 
               <label for="organization" class="inputing">Organization/School:</label> 
               <div class="dropdown" id="orgDropdown">
@@ -250,7 +282,7 @@
 
               <div id="otherOrg">
                 <label id="otherlabel" class="inputing" for="otherOrgInput">Other Organization:</label>
-                <input class="inputs" type="text" id="otherOrgInput" name="organizations" placeholder="Enter organization name" />
+                <input class="inputs" type="text" id="otherOrgInput" name="organizations" placeholder="Enter organization name" pattern="^[a-zA-Z0-9]" />
               </div>
 
               <script>

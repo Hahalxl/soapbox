@@ -18,17 +18,17 @@
             <div class="displaying">
                 <div class="item item1">
                     <h3 class="itemtitle">Total</h3>
-                    <h3 class="itemcontent">230<h3>
+                    <h3 class="itemcontent">{{info['total']}}<h3>
                     <h5 class="itemunit">Persons</h5>
                 </div>
                 <div class="item item2">
                     <h3 class="itemtitle">Dewey</h3>
-                    <h3 class="itemcontent">180</h3>
+                    <h3 class="itemcontent">{{info['dewey']}}</h3>
                     <h5 class="itemunit">Students</h5>
                 </div>
                 <div class="item item3">
                     <h3 class="itemtitle">Other</h3>
-                    <h3 class="itemcontent">50</h3>
+                    <h3 class="itemcontent">{{info['other']}}</h3>
                     <h5 class="itemunit">Persons</h5>
                 </div>
             </div>
@@ -38,27 +38,276 @@
                     <h3>GUI functions</h3>
                 </div>
                 <div class="function-collection">
-                    <div class="set">
+                    <div class="set func1">
                         <h3 class="function-label">Remove</h3>
-                        <button class="function-btn func1"></button>
+                        <button class="function-btn" data-bs-toggle="modal" data-bs-target="#modal-delete" >Click Here</button>
                     </div>
-                    <div class="set">
-                        <h3 class="function-label"></h3>
-                        <button class="function-btn func2"></button>
+                    <div class="set func2">
+                        <h3 class="function-label">Edit</h3>
+                        <button class="function-btn" data-bs-toggle="modal" data-bs-target="#modal-edit">Click Here</button>
                     </div>
-                    <div class="set">
-                        <h3 class="function-label"></h3>
-                        <button class="function-btn func3"></button>
-                    </div>
-                    <div class="set">
-                        <h3 class="function-label"></h3>
-                        <button class="function-btn func4"></button>
+                    <div class="set func4">
+                        <h3 class="function-label">Download</h3>
+                        <button class="function-btn">Click Here</button>
                     </div>
                 </div>
             </div>
-        </div>
-        
+            <div class="output-gui">
+                <div class="output-header">
+                    <h3 class="output-title">Output Terminal</h3>
+                </div>
+                <div class="output-content">
+                    <div class="output-input">
+                        <p class="terminal-text-1">Hahalxl@terminal$</p>
+                        <p class="output-text" id="output-text">{{output['command']}}</p>
+                    </div>
+                    <div class="output-content">
+                        <p class="terminal-text-2" id="output"></p>
+                    </div>
+                </div>
+            </div>
+        </div> 
     </div>
+    <script>
+        const speed = 21;
+        const content = "{{output['output']}}";
+        const about = document.getElementById("output");
+        let iter = 0;
 
+        function typeinabout2(){
+          if(iter < content.length){
+            about.innerHTML += content.charAt(iter);
+            iter++;
+            setTimeout(typeinabout2, speed);
+          }
+        }
+
+        document.addEventListener("DOMContentLoaded", (event) =>{
+            typeinabout2();
+        });
+    </script>
+      <div class="modal fade" id="modal-delete">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="header">
+          <h1 class="header-text-1">Estuary Beach Event<br>removal Form</h1>
+        </div>
+
+        <div class="modal-body">
+          <form action="/delete">
+            <div class="div-input">
+              <label for="Name" class="inputing">Name:*</label>
+              <input type="text" class="input-first" name="first_name" placeholder="First Name*"  required>
+              <input type="text" class="input-last" name="last_name" placeholder="Last Name*"  required>
+              <label for="osis" class="inputing">OSIS/Student ID:</label>
+              <input type="tel" name="osis" class="inputs" placeholder="Leave blank if you don't have one" maxlength="9" inputmode="numeric" pattern="\d{1,9}">
+              <label for="email" class="inputing">Email:*</label>
+              <input type="email" class="inputs" name="email" placeholder="example@email.com*" required>
+
+              <label for="organization" class="inputing">Organization/School:</label> 
+              <div class="dropdown" id="orgDropdown">
+                <input type="text" class="dropdown-input" placeholder="Select or type organization..." name="organization"/>
+                <span class="dropdown-arrow"></span>
+                <div class="dropdown-list">
+                  <input type="text" class="dropdown-search" placeholder="Search organization/schools..." />
+                  <div class="dropdown-items-container"></div>
+                  <div class="dropdown-no-results" style="display:none;">
+                    No results found. Please enter your organization/school name and press enter.
+                  </div>
+                </div>
+              </div>
+
+              <div id="otherOrg">
+                <label id="otherlabel" class="inputing" for="otherOrgInput">Other Organization:</label>
+                <input class="inputs" type="text" id="otherOrgInput" name="organizations" placeholder="Enter organization name" />
+              </div>
+
+              
+
+              <p class="required-note">* Required fields</p>
+              <div class="div-reset">
+                  <button type="reset" class="record-clear" data-bs-toggle="modal" data-bs-target="#confirmResetModal">
+                      <img class="record-clear-image" src="{{url_for('static', filename='images/restart.png')}}" alt="Reset">
+                  </button>
+                  <button type="submit" class="record-submit">Record</button>
+              </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <h5 class="footer-text">Made by Alex</h5>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="modal fade" id="modal-edit">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="header">
+          <h1 class="header-text-1">Estuary Beach Event<br>edit Form</h1>
+        </div>
+
+          <div class="modal-body">
+            <form action="/edit">
+              <div class="div-input">
+                <label for="Name" class="inputing">Name:*</label>
+                <input type="text" class="input-first" name="first_name" placeholder="First Name*"  required>
+                <input type="text" class="input-last" name="last_name" placeholder="Last Name*"  required>
+                <label for="osis" class="inputing">OSIS/Student ID:</label>
+                <input type="tel" name="osis" class="inputs" placeholder="Leave blank if you don't have one" maxlength="9" inputmode="numeric" pattern="\d{1,9}">
+                <label for="email" class="inputing">Email:*</label>
+                <input type="email" class="inputs" name="email" placeholder="example@email.com*"  required>
+
+                <label for="organization" class="inputing">Organization/School:</label> 
+                <div class="dropdown" id="orgDropdown">
+                  <input type="text" class="dropdown-input" placeholder="Select or type organization..." name="organization"/>
+                  <span class="dropdown-arrow"></span>
+                  <div class="dropdown-list">
+                    <input type="text" class="dropdown-search" placeholder="Search organization/schools..." />
+                    <div class="dropdown-items-container"></div>
+                    <div class="dropdown-no-results" style="display:none;">
+                      No results found. Please enter your organization/school name and press enter.
+                    </div>
+                  </div>
+                </div>
+
+                <div id="otherOrg">
+                  <label id="otherlabel" class="inputing" for="otherOrgInput">Other Organization:</label>
+                  <input class="inputs" type="text" id="otherOrgInput" name="organizations" placeholder="Enter organization name" />
+                </div>
+
+
+                <p class="required-note">* Required fields</p>
+                <div class="div-reset">
+                    <button type="reset" class="record-clear" data-bs-toggle="modal" data-bs-target="#confirmResetModal">
+                        <img class="record-clear-image" src="{{url_for('static', filename='images/restart.png')}}" alt="Reset">
+                    </button>
+                    <button type="submit" class="record-submit">Record</button>
+                </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <h5 class="footer-text">Made by Alex</h5>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+                (function(){
+                  const dropdown = document.getElementById('orgDropdown');
+                  const dropdownInput = dropdown.querySelector('.dropdown-input');
+                  const dropdownList = dropdown.querySelector('.dropdown-list');
+                  const dropdownSearch = dropdown.querySelector('.dropdown-search');
+                  const dropdownItemsContainer = dropdown.querySelector('.dropdown-items-container');
+                  const noResultsMsg = dropdown.querySelector('.dropdown-no-results');
+                  const otherOrgDiv = document.getElementById('otherOrg');
+                  const otherOrgInput = document.getElementById('otherOrgInput');
+
+                  const organizations = [
+                    "Brooklyn Italians Soccer Club",
+                    "Billion Oyster Project",
+                    "City Parks Foundation",
+                    "Eubie Blake P.S 25",
+                    "Harbor School",
+                    "John Dewey High School",
+                    "Kingsborough Early College School",
+                    "NYSMEA",
+                    "Partnership for Parks",
+                    "St. Patrick's School",
+                    "Wildlife Conservation Society",
+                    "Xaverian High School"
+                  ];
+
+                  let selectedOrg = null;
+
+                  function renderList(filter = '') {
+                    dropdownItemsContainer.innerHTML = '';
+                    const filtered = organizations.filter(org =>
+                      org.toLowerCase().includes(filter.toLowerCase())
+                    );
+
+                    if (filtered.length === 0) {
+                      noResultsMsg.style.display = 'block';
+                    } else {
+                      noResultsMsg.style.display = 'none';
+                      filtered.forEach(org => {
+                        const div = document.createElement('div');
+                        div.className = 'dropdown-item';
+                        div.textContent = org;
+                        div.addEventListener('click', () => {
+                          selectOrganization(org);
+                        });
+                        dropdownItemsContainer.appendChild(div);
+                      });
+
+                      const otherDiv = document.createElement('div');
+                      otherDiv.className = 'dropdown-item';
+                      otherDiv.textContent = 'Other';
+                      otherDiv.style.fontStyle = 'italic';
+                      otherDiv.addEventListener('click', () => {
+                        selectOrganization('Other');
+                      });
+                      dropdownItemsContainer.appendChild(otherDiv);
+                    }
+                  }
+
+                  function selectOrganization(orgName) {
+                    selectedOrg = orgName;
+                    dropdownInput.value = orgName === 'Other' ? '' : orgName;
+                    dropdown.classList.remove('open');
+                    dropdownSearch.value = '';
+                    renderList();
+                    if (orgName === 'Other') {
+                      otherOrgDiv.style.display = 'block';
+                      otherOrgInput.value = '';
+                      otherOrgInput.focus();
+                    } else {
+                      otherOrgDiv.style.display = 'none';
+                      otherOrgInput.value = '';
+                    }
+                  }
+
+                  dropdownInput.addEventListener('click', () => {
+                    dropdown.classList.toggle('open');
+                    dropdownSearch.focus();
+                    renderList();
+                  });
+
+                  dropdownSearch.addEventListener('input', () => {
+                    const val = dropdownSearch.value.trim();
+                    renderList(val);
+
+                    if (val.length > 0 && !organizations.some(org => org.toLowerCase() === val.toLowerCase())) {
+                      noResultsMsg.style.display = 'block';
+                    } else {
+                      noResultsMsg.style.display = 'none';
+                    }
+                  });
+
+                  document.addEventListener('click', e => {
+                    if (!dropdown.contains(e.target)) {
+                      dropdown.classList.remove('open');
+
+                      const typed = dropdownSearch.value.trim();
+                      if (typed.length > 0 && !organizations.some(org => org.toLowerCase() === typed.toLowerCase())) {
+                        selectOrganization('Other');
+                        otherOrgInput.value = typed;
+                        dropdownInput.value = typed;
+                      }
+                    }
+                  });
+
+                  dropdownInput.addEventListener('keydown', e => {
+                    e.preventDefault();
+                  });
+                })();
+              </script>
 </body>
+
 </html>

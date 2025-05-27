@@ -1,3 +1,5 @@
+import pandas as pd
+
 from library.function.functions import _config, _config_admin
 class Person:
     def __init__(self, name:str, osis:str, email:str, organization:str="John Dewey High School", fill:str="="):
@@ -61,11 +63,32 @@ class Admin:
         return self.name == admin["name"] and self.password == admin["password"]
 
 
+def replaces(_person: Person, into:Person) -> bool:
+    config = _config()
+    df = pd.read_csv(f"{config['dir'] + config['name']}")
+    df["osis"] = df["osis"].astype(str)
+    try:
+        df.loc[(df['name'] == _person.name) & (df['osis'] == (_person.osis)), :] = [into.name, into.osis, into.email, into.organization]
+    except Error as _:
+        return False
+    df.to_csv(f"{config['dir'] + config['name']}", index=False)
+    return True
+
+def remove(_person: Person) -> bool:
+    config = _config()
+    df = pd.read_csv(f"{config['dir'] + config['name']}")
+    df["osis"] = df["osis"].astype(str)
+    df = df.loc[(df["name"] != _person.name) & (df["osis"] != _person.osis), :]
+    df.to_csv(f"{config['dir'] + config['name']}", index=False)
+    return True
+
+
+
 
 if (__name__ == "__main__"):
     import os
     #THIS HAS TO CHANGE
     os.chdir("C:\\Users\\Ronan\\Coding\\Python\\Flask\\531")
-    alex = Person("Alex the sigma 2nd","69524234233132321","Alexliu@gmail.com","Alex Liu High School what the sigma bnrasdasd")
-    print(alex)
-    print(alex.check())
+    alex = Person("Alex Liu","24220398","hahalxlpro@gmail.com","Brooklyn Italians Soccer Club")
+    alex2 = Person("Alex Liu", "24220398", "hahalxlpro@gmail.com", "James Madison High School")
+    print(replaces(alex, alex2))

@@ -1,7 +1,7 @@
 from logging import exception
 
 from flask import Flask, render_template, request, url_for, redirect, session
-from library.person.person import Person, Admin
+from library.person.person import *
 from library.function import functions
 
 import secrets
@@ -46,7 +46,6 @@ def record():
     )
 
     if(_person.check()):
-        print("Returned " + _person.name)
         session['_person'] = json.dumps(_person.asjson())
         session['_recorded'] = True
         return redirect(url_for("index"))
@@ -58,7 +57,6 @@ def record():
         session['_recorded'] = False
         session['_person'] = json.dumps(_person.asjson())
         print("Clearing Console....")
-        # CHANGE THIS TO CLEAR IF MAC MUST DO OR IT BREAKS
         os.system("cls")
     else:
         session["_error"] = "Person not record ERROR! Something is wrong with the file."
@@ -76,24 +74,67 @@ def admin_login():
     if(_admin.ifadmin()):
         _json = json.dumps({"name":_admin.name, "password":_admin.password})
         session["admin"] = _json
-        return redirect(url_for("admin"))
-
-@app.route("/admin-panel")
-def admin():
-    try:
-        _info = session["admin"]
-        perm = json.loads(_info)
-    except Exception as e:
-        session["_error"] = e
+        session["output"] = " "
+        return redirect(url_for("control"))
+    else:
+        session["_error"] = "Person not authorized"
         return redirect(url_for("error"))
 
-    if(perm["name"]):
-        return render_template("admin.html")
+@app.route("/controls")
+def control():
+    try:
+        _output = session["output"]
+        _info = session["admin"]
+        thisinfo = functions.information()
+        if(_output != " "):
+            _output = json.loads(_output)
+    except Exception as e:
+        session["_error"] = f"Unfound error: {e}"
+        return redirect(url_for("error"))
 
-    session["_error"] = "Unauthorize request"
+    if(_info):
+        return render_template("admin.html", output=_output, info=thisinfo)
+    session["_error"] = "Person not authorized"
     return redirect(url_for("error"))
+
+@app.route("/delete")
+def delete():
+    _person = Person(
+        request.args.get("first_name", "None") + " " + request.args.get("last_name", "None"),
+        request.args.get("osis", "NULL"),
+        request.args.get("email", "None"),
+        request.args.get("organizations", "Others") if not request.args.get("organization", "Others") else request.args.get("organization", "Others")
+    )
+    print(_person)
+    if (_person.check()):
+        remove(_person)
+        session["output"] = json.dumps({"command":f"sudo remove {_person.name}", "output":"Successfully removed!"})
+        session["admin"] = True
+    else:
+        session["output"] = json.dumps({"command": f"sudo remove {_person.name}", "output":"Failed to find person, please ensure that you have inputted the correct information"})
+        session["admin"] = True
+    return redirect(url_for("control"))
+
+@app.route("/edit")
+def edit():
+    _person = Person(
+        request.args.get("first_name", "None") + " " + request.args.get("last_name", "None"),
+        request.args.get("osis", "NULL"),
+        request.args.get("email", "None"),
+        request.args.get("organizations", "Others") if not request.args.get("organization", "Others") else request.args.get("organization", "Others")
+    )
+    print(_person)
+    if (_person.check()):
+        replaces(_person)
+        session["output"] = json.dumps({"command":f"sudo edit {_person.name}", "output":"Successfully editted!"})
+        session["admin"] = True
+    else:
+        session["output"] = json.dumps({"command": f"sudo edit {_person.name}", "output":"Failed to find person, please ensure that you have inputted the correct information"})
+        session["admin"] = True
+    return redirect(url_for("control"))
+
 
 
 
 if(__name__ == "__main__"):
-    app.run(host="0.0.0.0", port=5000, debug=True )
+    app.run(host="0.0.0.0", port=5000, debug=True)
