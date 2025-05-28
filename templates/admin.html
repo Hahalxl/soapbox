@@ -130,18 +130,18 @@
               <div class="spliter" id="spilter-text">
               </div>
               <div id="extend">
-                <h3>New form</h3>
+              <h3>New form</h3>
               <label for="Name" class="inputing">Name:*</label>
-              <input type="text" class="input-first" name="first_name" placeholder="First Name*"  required>
-              <input type="text" class="input-last" name="last_name" placeholder="Last Name*"  required>
-              <label for="osis" class="inputing">OSIS/Student ID:</label>
-              <input type="tel" name="osis" class="inputs" placeholder="Leave blank if you don't have one" maxlength="9" inputmode="numeric" pattern="\d{1,9}">
+              <input type="text" class="input-first" name="newfirst_name" placeholder="First Name*">
+              <input type="text" class="input-last" name="newlast_name" placeholder="Last Name*">
+              <label for="newosis" class="inputing">OSIS/Student ID:</label>
+              <input type="tel" name="newosis" class="inputs" placeholder="Leave blank if you don't have one" maxlength="9" inputmode="numeric" pattern="\d{1,9}">
               <label for="email" class="inputing">Email:*</label>
-              <input type="email" class="inputs" name="email" placeholder="example@email.com*"required>
+              <input type="email" class="inputs" name="newemail" placeholder="example@email.com*">
 
               <label for="organization" class="inputing">Organization/School:</label> 
               <div class="dropdown" id="orgDropdown">
-                <input type="text" class="dropdown-input" placeholder="Select or type organization..." name="organization"/>
+                <input type="text" class="dropdown-input" placeholder="Select or type organization..." name="neworganization"/>
                 <span class="dropdown-arrow"></span>
                 <div class="dropdown-list">
                   <input type="text" class="dropdown-search" placeholder="Search organization/schools..." />
@@ -154,7 +154,7 @@
 
               <div id="otherOrg">
                 <label id="otherlabel" class="inputing" for="otherOrgInput">Other Organization:</label>
-                <input class="inputs" type="text" id="otherOrgInput" name="organizations" placeholder="Enter organization name" pattern="^[a-zA-Z0-9]" />
+                <input class="inputs" type="text" id="otherOrgInput" name="neworganizations" placeholder="Enter organization name" />
               </div>
 
               <script>
@@ -268,10 +268,10 @@
                 })();
               </script>
               </div>
+              <button type="submit" class="record-submit">Record</button>
+              </form>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="record-submit">Record</button>
-            </form>
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
           </div>
         </div>

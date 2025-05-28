@@ -390,6 +390,9 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-family: 'Inter', sans-serif;
+  margin-left: auto;
+  width: 200px;
+  display: block;
 }
 
 .record-submit:hover {

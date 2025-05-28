@@ -90,5 +90,8 @@ if (__name__ == "__main__"):
     #THIS HAS TO CHANGE
     os.chdir("C:\\Users\\Ronan\\Coding\\Python\\Flask\\531")
     alex = Person("Alex Liu","24220398","hahalxlpro@gmail.com","Brooklyn Italians Soccer Club")
-    alex2 = Person("Alex Liu", "24220398", "hahalxlpro@gmail.com", "James Madison High School")
-    print(replaces(alex, alex2))
+    alex2 = Person("Alex Lius", "24220398", "hahalxlpro@gmail.com", "James Madison High School")
+    alex.save()
+    config = _config()
+    df = pd.read_csv(f"{config['dir'] + config['name']}")
+    print(df.dtypes)
