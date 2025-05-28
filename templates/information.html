@@ -12,8 +12,8 @@
 <body>
     <div class="container-fluid confirm">
         <div class="confirm-title">
-            <h1 class="title-text">Confirmation</h1>
-            <h2 class="title-content">Look below to check your informations</h2>
+            <h1 class="title-text">Thank you for signing up!</h1>
+            <h2 class="title-content">You have been confirmed for this event</h2>
         </div>
         <div class="spliter">
 
@@ -21,7 +21,7 @@
 
         <div class="id">
             <div class="id-header container-fluid" id="id-header">
-                <h3 class="header-text left">It's my Estuary Day</h3>
+                <h3 class="header-text left">It's my Estuary Day!</h3>
                 <h3 class="header-text right">{{_person["name"]}}</h3>
             </div>
 
@@ -31,22 +31,26 @@
                     <p>Roblox Guest</p>
                 </div>
                 <div class="content-more">
-                    <div class="content-content">
-                        <h3 class="content-title">Osis:</h3>
-                        <h3 class="content-text">{{_person["osis"]}}</h3>
-                    </div>
+                    {% if _person["osis"] %}
+<div class="content-content">
+    <h3 class="content-title">Osis:</h3>
+    <h3 class="content-text">{{_person["osis"]}}</h3>
+</div>
+{% endif %}
                     <div class="content-content">
                         <h3 class="content-title">Email:</h3>
                         <h3 class="content-text">{{_person["email"]}}</h3>
                     </div>
-                    <div class="content-content">
-                        <h3 class="content-title">Organization</h3>
-                        <h3 class="content-text">{{_person["organization"]}}</h3>
-                    </div>
+                    {% if _person["organization"] %}
+<div class="content-content">
+    <h3 class="content-title">Organization:</h3>
+    <h3 class="content-text">{{_person["organization"]}}</h3>
+</div>
+{% endif %}
                 </div>
             </div>
             <div class="id-footer" id="id-footer">
-                <h3 class="footer-text">Thank you, for your service and participation in It's My Estuary Day!</h3>
+                <h3 class="footer-text">Thank you for your service and participation in this event!</h3>
                 {% if _person["recorded"] %}
                 <h3 class="footer-text">Your information is recorded already, if there is a error then tell Alex to remove it.</h3>
                 {% endif %}
@@ -60,6 +64,6 @@
             </script>
 
         </div>
-    <a href="{{url_for('index')}}" class="return"><button class="return-btn">Go back</button></a>
+    <a href="{{url_for('index')}}" class="return"><button class="return-btn">Close</button></a>
 </body>
 </html>

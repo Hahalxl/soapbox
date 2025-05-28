@@ -15,7 +15,8 @@
 <div class="blue-banner">
   <div class="banner-content">
     <h1>It's My Estuary Day!</h1>
-    <p>Beach Cleanup Event - May 31st</p>
+    <p>Kaiser Park Beach Cleanup Event</p>
+    <p>-- May 31st --</p>
   </div>
 </div>
 
@@ -130,19 +131,90 @@
 
     <!-- Event poster -->
     <div class="poster container-fluid">
-      <img src="{{url_for('static', filename='images/poster.png')}}" class="img-thumbnail" alt="Event Poster">
+      <img src="https://i.postimg.cc/Pr482zSz/poster.jpg" class="img-thumbnail" alt="Event Poster">
     </div>
 
+    <!--directions-->
+<div class="directions-container">
+  <h3 class="directions-heading">Directions</h3>
+  <div class="map-buttons">
+    <a href="https://maps.app.goo.gl/twGrrG7c9sSbZAUf9" target="_blank" class="map-button google-maps">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Google_Maps_icon_%282020%29.svg" alt="Google Maps icon" class="map-icon">
+      Google Maps
+    </a>
+    <a href="https://maps.apple.com/place?place-id=I9691C19499F91C2B&_provider=9902" target="_blank" class="map-button apple-maps">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Apple_Maps_Logo_3D.png" alt="Apple Maps icon" class="map-icon">
+      Apple Maps
+    </a>
+  </div>
+</div>
+
+<style>
+.directions-container {
+  text-align: center;
+  margin: 20px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.directions-heading {
+  color: #333;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.map-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.map-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.google-maps {
+  background-color: #4285F4;
+  color: white;
+}
+
+.apple-maps {
+  background-color: #000;
+  color: white;
+}
+
+.map-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.map-icon {
+  width: 18px;
+  height: 18px;
+}
+</style>
+
+      <!-- Event poster -->
     <div class="poster container-fluid">
       <h1 style="font-size: 32px;text-align: center;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Map to Kaiser Park from John Dewey High School!</h1>
-      <img src="{{url_for('static', filename='images/map.png')}}" class="img-thumbnail" alt="Event Poster">
+      <img src="https://i.postimg.cc/sf5WZRSL/map.png" class="img-thumbnail" alt="Event Poster">
     </div>
+
 
 
     <!-- Memory section -->
-    <div class="container-fluid" id="memory">
+<div class="gallery-container">
+  <div class="gallery-scroll">
+    <div class="container-fluid memory-item">
       <div class="card img-display">
-        <img class="card-img-top card-img" src="{{url_for('static', filename='images/beachcleanup1.png')}}" alt="Beach Cleanup">
+        <img class="card-img-top card-img" src="https://i.postimg.cc/Dy2SJ47W/beachcleanup1-1.png" alt="Beach Cleanup">
         <div class="card-body">
           <h2 class="card-title">Verrazano-Narrows Bridge</h2>
           <p class="card-infos">A bridge connecting Staten Island and Brooklyn, completed in 1959 (65 years ago).<br>
@@ -152,30 +224,170 @@
         </div>
       </div>
     </div>
-        <div class="container-fluid" id="memory">
+    
+    <div class="container-fluid memory-item">
       <div class="card img-display">
-        <img class="card-img-top card-img" src="https://media.discordapp.net/attachments/1163625200412270794/1376322234771046470/AP1GczNMOVit2MxIVfCRBwA8NVVMpghMzNQycqmayDMte7nt-6ThT26dLH_11pa240Fb9MSEdnw79LmX0A8qgkxIhlAzRBW99KMLi3oYJbpfj0i0zFfKYVgf_2vK615AJm4IXu1p2_ya4636QMHX3BwduVpg0ww1260-h945-s-no-gm.png?ex=6834e777&is=683395f7&hm=bb1598dcd7f7d16b5671f4bebecbd18406865e334580688a116cd7d56518a87c&=&format=webp&quality=lossless" alt="Beach Cleanup">
+        <img class="card-img-top card-img" src="https://i.postimg.cc/DyFXrYPw/final.jpg" alt="Beach Cleanup">
         <div class="card-body">
-          <h2 class="card-title">Verrazano-Narrows Bridge</h2>
-          <p class="card-infos"><br>
-            For more information, visit <a href="https://en.wikipedia.org/wiki/Verrazzano-Narrows_Bridge">Wikipedia</a>
+          <h2 class="card-title">Kaiser Park - 2024</h2>
+          <p class="card-infos">Kaiser Park's last years cleanup (2024)<br>
+            For more information about Kaiser Park, visit <a href="https://en.wikipedia.org/wiki/Kaiser_Park">Wikipedia</a>
           </p>
           <h3 class="card-author">Photo by: Ms.Wood, at Kaiser Park, Coney Island</h3>
         </div>
       </div>
     </div>
-    <div class="container-fluid" id="memory">
+    
+    <div class="container-fluid memory-item">
       <div class="card img-display">
-        <img class="card-img-top card-img" src="https://media.discordapp.net/attachments/1163625200412270794/1376309654744727583/AP1GczOlbWK9XX1VAQbnCjO6zjXsvtgJYd2xF1EwnoL6l-KRqH_KpySq0JILsV9hwCCkjqeDFKZ3tygr0leWOn1G4pLYm7MTluyVguor6_vrvMztGqRARUyE2atsUvaTeqAp32FxvC6ejONLcxQq-Oqh8X1H7gw1260-h945-s-no-gm.png?ex=6834dbc0&is=68338a40&hm=0f45b9660aa2824226f5e904bda94b6c061e0bee799b5844c6b9c278c3b4e620&=&format=webp&quality=lossless"  alt="Beach Cleanup">
+        <img class="card-img-top card-img" src="https://i.postimg.cc/Hn07GQdm/roboticscleanup.jpg" alt="Beach Cleanup">
         <div class="card-body">
-          <h2 class="card-title">Verrazano-Narrows Bridge</h2>
-          <p class="card-infos">A bridge connecting Staten Island and Brooklyn, completed in 1959 (65 years ago).<br>
-            For more information, visit <a href="https://en.wikipedia.org/wiki/Verrazzano-Narrows_Bridge">Wikipedia</a>
+          <h2 class="card-title">Kaiser Park Cleanup - Robotics Team</h2>
+          <p class="card-infos">Kaiser Park's last years cleanup - Robotics Team (2024)<br>
+            For more information about Kaiser Park, visit <a href="https://en.wikipedia.org/wiki/Kaiser_Park">Wikipedia</a>
           </p>
-          <h3 class="card-author">Photo by: Alex Liu, at Kaiser Park, Coney Island</h3>
+          <h3 class="card-author">Photo by: Ms.Wood, at Kaiser Park, Coney Island</h3>
         </div>
       </div>
     </div>
+  </div>
+  
+<button class="scroll-btn left-scroll-btn" aria-label="Previous"><span>&lt;</span></button>
+<button class="scroll-btn right-scroll-btn" aria-label="Next"><span>&gt;</span></button>
+</div>
+
+<!--script for scrolling imgs-->
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const gallery = document.querySelector('.gallery-scroll');
+  const leftBtn = document.querySelector('.left-scroll-btn');
+  const rightBtn = document.querySelector('.right-scroll-btn');
+  const items = document.querySelectorAll('.memory-item');
+  let autoScrollInterval;
+  let isScrolling = false;
+  let isTouching = false;
+
+  // Initialize buttons
+  updateButtonVisibility();
+
+  // Button scrolling
+  leftBtn.addEventListener('click', () => {
+    if (isScrolling) return;
+    isScrolling = true;
+    gallery.scrollBy({
+      left: -getScrollAmount(),
+      behavior: 'smooth'
+    });
+    resetAutoScroll();
+    setTimeout(() => isScrolling = false, 500);
+  });
+
+  rightBtn.addEventListener('click', () => {
+    if (isScrolling) return;
+    isScrolling = true;
+    gallery.scrollBy({
+      left: getScrollAmount(),
+      behavior: 'smooth'
+    });
+    resetAutoScroll();
+    setTimeout(() => isScrolling = false, 500);
+  });
+
+  // Calculate scroll amount based on item width
+  function getScrollAmount() {
+    return items[0].offsetWidth + 20; // 20px gap
+  }
+
+  // Auto-scrolling functionality - UPDATED TO HANDLE ALL ITEMS
+  function startAutoScroll() {
+    clearInterval(autoScrollInterval);
+    autoScrollInterval = setInterval(() => {
+      if (isScrolling || isTouching) return;
+      
+      const scrollAmount = getScrollAmount();
+      const maxScroll = gallery.scrollWidth - gallery.clientWidth;
+      const currentScroll = gallery.scrollLeft;
+      
+      // If we're at or near the end, scroll back to start
+      if (currentScroll + scrollAmount >= maxScroll - 10) {
+        gallery.scrollTo({
+          left: 0,
+          behavior: 'smooth'
+        });
+      } 
+      // If we're not at the last item, scroll to next item
+      else {
+        // Find which item we should scroll to
+        let targetItem;
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i];
+          const itemLeft = item.offsetLeft;
+          const itemRight = itemLeft + item.offsetWidth;
+          
+          // Find the first item that's not fully visible
+          if (itemRight > currentScroll + gallery.clientWidth) {
+            targetItem = item;
+            break;
+          }
+        }
+        
+        // If we found a target item, scroll to it
+        if (targetItem) {
+          gallery.scrollTo({
+            left: targetItem.offsetLeft - 10, // 10px padding
+            behavior: 'smooth'
+          });
+        }
+        // Otherwise scroll by the default amount
+        else {
+          gallery.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+          });
+        }
+      }
+    }, 5000);
+  }
+
+  function resetAutoScroll() {
+    clearInterval(autoScrollInterval);
+    startAutoScroll();
+  }
+
+  // Update button visibility
+  function updateButtonVisibility() {
+    const maxScroll = gallery.scrollWidth - gallery.clientWidth;
+    leftBtn.classList.toggle('hidden', gallery.scrollLeft <= 10);
+    rightBtn.classList.toggle('hidden', gallery.scrollLeft >= maxScroll - 10);
+  }
+
+  // Event listeners
+  gallery.addEventListener('scroll', updateButtonVisibility);
+  
+  // Mouse interactions
+  gallery.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+  gallery.addEventListener('mouseleave', startAutoScroll);
+  
+  // Touch interactions
+  gallery.addEventListener('touchstart', () => {
+    isTouching = true;
+    clearInterval(autoScrollInterval);
+  }, { passive: true });
+  
+  gallery.addEventListener('touchend', () => {
+    isTouching = false;
+    setTimeout(() => {
+      if (!isTouching) {
+        resetAutoScroll();
+      }
+    }, 1000);
+  }, { passive: true });
+
+  // Start auto-scroll after a short delay
+  setTimeout(startAutoScroll, 1000);
+});
+</script>
 
       <!-- Footer section -->
   <footer class="text-center text-white" style="background-color:#3c8dbc;" id="footer">
@@ -282,7 +494,7 @@
 
               <div id="otherOrg">
                 <label id="otherlabel" class="inputing" for="otherOrgInput">Other Organization:</label>
-                <input class="inputs" type="text" id="otherOrgInput" name="organizations" placeholder="Enter organization name" pattern="^[a-zA-Z0-9]" />
+                <input class="inputs" type="text" id="otherOrgInput" name="organizations" placeholder="Enter organization name"/>
               </div>
 
               <script>

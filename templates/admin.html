@@ -75,10 +75,10 @@
                         </script>
                     </div>
                     <div class="set func4">
-                        <h3 class="function-label">Download</h3>
-                        <button class="function-btn">Click Here</button>
-                    </div>
-                </div>
+                    <h3 class="function-label">Download</h3>
+                    <a href="/download" class="function-btn" download>Click Here</a>
+                  </div>
+              </div>
             </div>
             <div class="output-gui">
                 <div class="output-header">
@@ -277,7 +277,10 @@
         </div>
       </div>
     </div>
-    
-</body>
 
+<form action="{{ url_for('logout') }}" method="get" class="logout-form">
+  <button type="submit" class="logout-button">Log Out / Go Back</button>
+</form>
+
+</body>
 </html>
