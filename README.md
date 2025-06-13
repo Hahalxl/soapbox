@@ -34,14 +34,14 @@
     You should see:
 
     ```
-    origin  https://github.com/Hahalxl/PythonFlasking531.git (fetch)
-    origin  https://github.com/Hahalxl/PythonFlasking531.git (push)
+    origin  https://github.com/Hahalxl/soapbox.git (fetch)
+    origin  https://github.com/Hahalxl/soapbox.git (push)
     ```
 
     If not set, add it:
 
     ```bash
-    git remote add origin https://github.com/Hahalxl/PythonFlasking531.git
+    git remote add origin https://github.com/Hahalxl/soapbox.git
     ```
 
 3. Stage all your changes:
