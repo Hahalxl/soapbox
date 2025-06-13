@@ -7,7 +7,7 @@
     ```
 
     ```bash
-    git clone https://github.com/Hahalxl/PythonFlasking531/
+    git clone https://github.com/Hahalxl/soapbox/
     ```
 
 2. Open VScode and open file on desktop
