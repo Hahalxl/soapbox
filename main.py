@@ -42,10 +42,14 @@ def index():
 @app.route("/record")
 def record():
     _person = Person(
-        request.args.get("first_name", "None") + " " + request.args.get("last_name", "None"),
-        request.args.get("Osis", "None"),
+        request.args.get("last", "None"),
+        request.args.get("first", "None"),
         request.args.get("email", "None"),
-        request.args.get("organization", "None") if not request.args.get("organization", "None") == "None" else request.args.get("organizations", "None")
+        request.args.get("phone", "None"),
+        request.args.get("school", "John Dewey High School"),
+        request.args.get("osis", "None"),
+        request.args.get("DOB", "None"),
+        request.args.get("role", "None")
     )
 
     if _person.check():
@@ -71,109 +75,7 @@ def record():
 
     return redirect(url_for("index"))
 
-@app.route("/admin")
-def admin_login():
-    try:
-        _admin = Admin(
-            name = request.args.get("username"),
-            password = request.args.get("password")
-        )
-    except Exception as E:
-        session["_error"] = f"Error logging admin: {str(E)}"
-        return redirect(url_for("error"))
 
-    if(_admin.ifadmin()):
-        _json = json.dumps({"name":_admin.name, "password":_admin.password})
-        session["admin"] = _json
-        session["output"] = " "
-        return redirect(url_for("control"))
-    else:
-        session["_error"] = "Person not authorized"
-        return redirect(url_for("error"))
-
-@app.route("/controls")
-def control():
-    try:
-        _output = session["output"]
-        _info = session["admin"]
-        thisinfo = functions.information()
-        if(_output != " "):
-            _output = json.loads(_output)
-    except Exception as e:
-        session["_error"] = f"Unfound error: {e}"
-        return redirect(url_for("error"))
-
-    if(_info):
-        return render_template("admin.html", output=_output, info=thisinfo)
-    session["_error"] = "User not authorized"
-    return redirect(url_for("error"))
-
-@app.route("/delete")
-def delete():
-    _person = Person(
-        request.args.get("first_name", "None") + " " + request.args.get("last_name", "None"),
-        request.args.get("osis", "NULL"),
-        request.args.get("email", "None"),
-        request.args.get("organizations", "Others") if not request.args.get("organization", "Others") else request.args.get("organization", "Others")
-    )
-    if (_person.check()):
-        remove(_person)
-        session["output"] = json.dumps({"command":f"sudo remove {_person.name}", "output":"Successfully removed!"})
-        session["admin"] = True
-    else:
-        session["output"] = json.dumps({"command": f"sudo remove {_person.name}", "output":"Failed to find person, please ensure that you have inputted the correct information"})
-        session["admin"] = True
-    return redirect(url_for("control"))
-
-@app.route("/edit")
-def edit():
-    _person = Person(
-        request.args.get("first_name", "None") + " " + request.args.get("last_name", "None"),
-        request.args.get("osis", "NULL"),
-        request.args.get("email", "None"),
-        request.args.get("organizations", "Others") if not request.args.get("organization", "Others") else request.args.get("organization", "Others")
-    )
-    _into = Person(
-        request.args.get("newfirst_name", "None") + " " + request.args.get("newlast_name", "None"),
-        request.args.get("newosis", "NULL"),
-        request.args.get("newemail", "None"),
-        request.args.get("neworganizations", "Others") if not request.args.get("neworganization", "Others") else request.args.get("neworganization", "Others")
-    )
-    print(_person)
-    if (_person.check()):
-        replaces(_person, _into)
-        session["output"] = json.dumps({"command":f"sudo edit {_person.name}", "output":f"Successfully editted! (Before: {_person.name},After: {_into.name}"})
-        session["admin"] = True
-    else:
-        session["output"] = json.dumps({"command": f"sudo edit {_person.name}", "output":"Failed to find person, please ensure that you have inputted the correct information"})
-        session["admin"] = True
-    return redirect(url_for("control"))
-
-
-@app.route("/download")
-def download_csv():
-    try:
-        perm = session["admin"]
-    except KeyError:
-        session["_error"] = "Unauthorized access to download."
-        return redirect(url_for("error"))
-    if not perm:
-        session["_error"] = "Unauthorized access to download."
-        return redirect(url_for("error"))
-    config = functions._config()
-
-    return send_file(
-        path_or_file=f"{config['dir'] + config['name']}",
-        mimetype='text/csv',
-        download_name='data.csv',
-        as_attachment=True
-    )
-
-@app.route("/logout")
-def logout():
-    session.pop("admin", None)
-    session.pop("output", None)
-    return redirect(url_for("index"))
 
 if(__name__ == "__main__"):
     app.run(host="0.0.0.0", port=5000, debug=True)
