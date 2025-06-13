@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Estuary Beach Event</title>
+        <title>JDHS - Soapbox Derby - 2025</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="{{url_for('static', filename='images/favicon.png')}}" type="image/x-icon">
         <link rel="stylesheet" href="{{url_for('static', filename='style/styles.css')}}">
@@ -14,9 +14,10 @@
 <body>
 <div class="blue-banner">
   <div class="banner-content">
-    <h1>It's My Estuary Day!</h1>
-    <p>Kaiser Park Beach Cleanup Event</p>
-    <p>-- May 31st --</p>
+    <h1>John Dewey High School:</h1>
+    <h2><b>Soapbox Derby</b></h2>
+    <h3>Youth-oriented gravity racer</h3>
+    <p>— <time datetime="2025-06-14">June 14, 2025</time> —</p>
   </div>
 </div>
 
@@ -27,13 +28,14 @@
 
 <nav id="sidebar" class="sidebar">
   <div class="sidebar-header">
-    <h1>It's My Estuary Day!</h1>
+    <h1>JDHS - Soapbox Derby - 2025</h1>
     <button id="sidebarClose" aria-label="Close menu" class="sidebar-close-btn">&times;</button>
   </div>
   <ul class="sidebar-nav">
-    <li><a href="#about">About</a></li>
-    <li><a href="#memory">Memory</a></li>
-    <li><a href="#footer">Footer</a></li>
+    <li><a href="#about">About The Event</a></li>
+    <li><a href="#poster">Posters & Images</a></li>
+    <li><a href="#dire">Directions To JDHS</a></li>
+    <li><a href="#footer">More Information</a></li>
   </ul>
   <button class="btn-admin sidebar-btn" type="button" data-bs-toggle="modal" data-bs-target="#admin-login" id="adminbtn">Admin login</button>
   <button class="record-btn sidebar-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-record" id="recordbtn2">Record yourself!</button>
@@ -81,7 +83,7 @@
     <!-- About section -->
 <div class="about-container" id="about">
   <div class="about-content">
-    <h2 class="record-text">Click below to record your contribution!</h2>
+    <h2 class="record-text">Click below to record!</h2>
     <button class="record-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-record">Record yourself!</button>
     
     <h2 class="div-title" id="aboutdisplay"></h2>
@@ -108,7 +110,7 @@
           return false;
         }
 
-        const content = "It's My Estuary Day (IMED) is a beach cleanup event at Kaiser Park on Saturday, May 31 (Rain date: June 1), from 9 AM to 2 PM. This is a fantastic opportunity to support our community, enjoy nature, and meet people from across New York!";
+        const content = "The JDHS Soap Box Derby celebrates creativity, teamwork, and the legacy of Pat Lockhart, an amazing educator who inspired hands on learning. Students race with soapbox cars, using gravity as their engine, this event honors Pat Lockhart's vision of empowering children with hands on innovation!";
         const about = document.getElementById("aboutcontent");
         let iter = 0;
 
@@ -127,27 +129,35 @@
 
       </script>
     </div>
-
+  </div>
 
     <!-- Event poster -->
+<div class="poster-container" id="poster">
+<h1 style="font-size: 23px;text-align: center;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin-left: 20px; margin-right: 20px;">JDHS Admitted Student Welcome Banner</h1>
     <div class="poster container-fluid">
-      <img src="https://i.postimg.cc/Pr482zSz/poster.jpg" class="img-thumbnail" alt="Event Poster">
+      <img src="https://i.postimg.cc/L52fpYJn/Screenshot-2025-06-13-164819.png" class="img-thumbnail" alt="Event Poster">
+    </div>
+<h1 style="font-size: 23px;text-align: center;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin-left: 20px; margin-right: 20px;">Tribute to Pat Lockhart - JDHS Soap Box Derby 2025</h1>
+    <div class="poster container-fluid">
+      <img src="https://i.postimg.cc/Jn2nTsjf/Screenshot-2025-06-13-171935.png" class="img-thumbnail" alt="Event Poster">
+    </div>
     </div>
 
     <!--directions-->
-<div class="directions-container">
-  <h3 class="directions-heading">Directions</h3>
+<div class="directions-container" id="dire">
+  <h3 class="directions-heading">Directions To JDHS</h3>
   <div class="map-buttons">
-    <a href="https://maps.app.goo.gl/twGrrG7c9sSbZAUf9" target="_blank" class="map-button google-maps">
+    <a href="https://maps.app.goo.gl/2oNjS8PTYgS4GPux7" target="_blank" class="map-button google-maps">
       <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Google_Maps_icon_%282020%29.svg" alt="Google Maps icon" class="map-icon">
       Google Maps
     </a>
-    <a href="https://maps.apple.com/place?place-id=I9691C19499F91C2B&_provider=9902" target="_blank" class="map-button apple-maps">
+    <a href="https://maps.apple.com/place?place-id=I54BF1FD6E144D110" target="_blank" class="map-button apple-maps">
       <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Apple_Maps_Logo_3D.png" alt="Apple Maps icon" class="map-icon">
       Apple Maps
     </a>
   </div>
 </div>
+
 
 <style>
 .directions-container {
@@ -203,191 +213,10 @@
 
       <!-- Event poster -->
     <div class="poster container-fluid">
-      <h1 style="font-size: 32px;text-align: center;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Map to Kaiser Park from John Dewey High School!</h1>
-      <img src="https://i.postimg.cc/sf5WZRSL/map.png" class="img-thumbnail" alt="Event Poster">
+      <h1 style="font-size: 32px;text-align: center;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">John Dewey High School Location</h1>
+      <img src="https://i.postimg.cc/fTs5zyG7/Screenshot-2025-06-13-164439.png" class="img-thumbnail" alt="Event Poster">
     </div>
 
-
-
-    <!-- Memory section -->
-<div class="gallery-container">
-  <div class="gallery-scroll">
-    <div class="container-fluid memory-item">
-      <div class="card img-display">
-        <img class="card-img-top card-img" src="https://i.postimg.cc/Dy2SJ47W/beachcleanup1-1.png" alt="Beach Cleanup">
-        <div class="card-body">
-          <h2 class="card-title">Verrazano-Narrows Bridge</h2>
-          <p class="card-infos">A bridge connecting Staten Island and Brooklyn, completed in 1959 (65 years ago).<br>
-            For more information, visit <a href="https://en.wikipedia.org/wiki/Verrazzano-Narrows_Bridge">Wikipedia</a>
-          </p>
-          <h3 class="card-author">Photo by: Alex Liu, at Kaiser Park, Coney Island</h3>
-        </div>
-      </div>
-    </div>
-    
-    <div class="container-fluid memory-item">
-      <div class="card img-display">
-        <img class="card-img-top card-img" src="https://i.postimg.cc/DyFXrYPw/final.jpg" alt="Beach Cleanup">
-        <div class="card-body">
-          <h2 class="card-title">Kaiser Park - 2024</h2>
-          <p class="card-infos">Kaiser Park's last years cleanup (2024)<br>
-            For more information about Kaiser Park, visit <a href="https://en.wikipedia.org/wiki/Kaiser_Park">Wikipedia</a>
-          </p>
-          <h3 class="card-author">Photo by: Ms.Wood, at Kaiser Park, Coney Island</h3>
-        </div>
-      </div>
-    </div>
-    
-    <div class="container-fluid memory-item">
-      <div class="card img-display">
-        <img class="card-img-top card-img" src="https://i.postimg.cc/Hn07GQdm/roboticscleanup.jpg" alt="Beach Cleanup">
-        <div class="card-body">
-          <h2 class="card-title">Kaiser Park Cleanup - Robotics Team</h2>
-          <p class="card-infos">Kaiser Park's last years cleanup - Robotics Team (2024)<br>
-            For more information about Kaiser Park, visit <a href="https://en.wikipedia.org/wiki/Kaiser_Park">Wikipedia</a>
-          </p>
-          <h3 class="card-author">Photo by: Ms.Wood, at Kaiser Park, Coney Island</h3>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-<button class="scroll-btn left-scroll-btn" aria-label="Previous"><span>&lt;</span></button>
-<button class="scroll-btn right-scroll-btn" aria-label="Next"><span>&gt;</span></button>
-</div>
-
-<!--script for scrolling imgs-->
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const gallery = document.querySelector('.gallery-scroll');
-  const leftBtn = document.querySelector('.left-scroll-btn');
-  const rightBtn = document.querySelector('.right-scroll-btn');
-  const items = document.querySelectorAll('.memory-item');
-  let autoScrollInterval;
-  let isScrolling = false;
-  let isTouching = false;
-
-  // Initialize buttons
-  updateButtonVisibility();
-
-  // Button scrolling
-  leftBtn.addEventListener('click', () => {
-    if (isScrolling) return;
-    isScrolling = true;
-    gallery.scrollBy({
-      left: -getScrollAmount(),
-      behavior: 'smooth'
-    });
-    resetAutoScroll();
-    setTimeout(() => isScrolling = false, 500);
-  });
-
-  rightBtn.addEventListener('click', () => {
-    if (isScrolling) return;
-    isScrolling = true;
-    gallery.scrollBy({
-      left: getScrollAmount(),
-      behavior: 'smooth'
-    });
-    resetAutoScroll();
-    setTimeout(() => isScrolling = false, 500);
-  });
-
-  // Calculate scroll amount based on item width
-  function getScrollAmount() {
-    return items[0].offsetWidth + 20; // 20px gap
-  }
-
-  // Auto-scrolling functionality - UPDATED TO HANDLE ALL ITEMS
-  function startAutoScroll() {
-    clearInterval(autoScrollInterval);
-    autoScrollInterval = setInterval(() => {
-      if (isScrolling || isTouching) return;
-      
-      const scrollAmount = getScrollAmount();
-      const maxScroll = gallery.scrollWidth - gallery.clientWidth;
-      const currentScroll = gallery.scrollLeft;
-      
-      // If we're at or near the end, scroll back to start
-      if (currentScroll + scrollAmount >= maxScroll - 10) {
-        gallery.scrollTo({
-          left: 0,
-          behavior: 'smooth'
-        });
-      } 
-      // If we're not at the last item, scroll to next item
-      else {
-        // Find which item we should scroll to
-        let targetItem;
-        for (let i = 0; i < items.length; i++) {
-          const item = items[i];
-          const itemLeft = item.offsetLeft;
-          const itemRight = itemLeft + item.offsetWidth;
-          
-          // Find the first item that's not fully visible
-          if (itemRight > currentScroll + gallery.clientWidth) {
-            targetItem = item;
-            break;
-          }
-        }
-        
-        // If we found a target item, scroll to it
-        if (targetItem) {
-          gallery.scrollTo({
-            left: targetItem.offsetLeft - 10, // 10px padding
-            behavior: 'smooth'
-          });
-        }
-        // Otherwise scroll by the default amount
-        else {
-          gallery.scrollBy({
-            left: scrollAmount,
-            behavior: 'smooth'
-          });
-        }
-      }
-    }, 5000);
-  }
-
-  function resetAutoScroll() {
-    clearInterval(autoScrollInterval);
-    startAutoScroll();
-  }
-
-  // Update button visibility
-  function updateButtonVisibility() {
-    const maxScroll = gallery.scrollWidth - gallery.clientWidth;
-    leftBtn.classList.toggle('hidden', gallery.scrollLeft <= 10);
-    rightBtn.classList.toggle('hidden', gallery.scrollLeft >= maxScroll - 10);
-  }
-
-  // Event listeners
-  gallery.addEventListener('scroll', updateButtonVisibility);
-  
-  // Mouse interactions
-  gallery.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
-  gallery.addEventListener('mouseleave', startAutoScroll);
-  
-  // Touch interactions
-  gallery.addEventListener('touchstart', () => {
-    isTouching = true;
-    clearInterval(autoScrollInterval);
-  }, { passive: true });
-  
-  gallery.addEventListener('touchend', () => {
-    isTouching = false;
-    setTimeout(() => {
-      if (!isTouching) {
-        resetAutoScroll();
-      }
-    }, 1000);
-  }, { passive: true });
-
-  // Start auto-scroll after a short delay
-  setTimeout(startAutoScroll, 1000);
-});
-</script>
 
       <!-- Footer section -->
   <footer class="text-center text-white" style="background-color:#3c8dbc;" id="footer">
@@ -418,9 +247,9 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
             <h5 class="text-uppercase">John Dewey High School</h5>
             <ul class="list-unstyled mb-0">
-              <li><a href="https://www.johndeweyhighschool.org/" class="text-white">Main website</a></li>
-              <li><a href="https://www.instagram.com/johndeweybk/" class="text-white">Instagram</a></li>
-              <li><a href="https://www.facebook.com/BrooklynJohnDeweyHsInfo/" class="text-white">Facebook</a></li>
+              <li><a href="https://www.johndeweyhighschool.org/" class="text-white">JDHS - Main website</a></li>
+              <li><a href="https://www.instagram.com/johndeweybk/" class="text-white">JDHS - Instagram</a></li>
+              <li><a href="https://www.facebook.com/BrooklynJohnDeweyHsInfo/" class="text-white">JDHS - Facebook</a></li>
             </ul>
           </div>
           <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
@@ -431,16 +260,17 @@ document.addEventListener('DOMContentLoaded', function() {
             </ul>
           </div>
           <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase">Partner Organizations</h5>
+            <h5 class="text-uppercase">Partner Schools</h5>
             <ul class="list-unstyled mb-0">
-              <li><a href="https://nysmea.wildapricot.org/" class="text-white">New York State Marine Education Association</a></li>
-              <li><a href="https://cityparksfoundation.org/" class="text-white">City Parks Foundation</a></li>
-              <li><a href="https://www.billionoysterproject.org/" class="text-white">Billion Oyster Project</a></li>
-              <li><a href="https://nyaquarium.com/" class="text-white">New York Aquarium</a></li>
+              <li><a href="https://www.ps200.com/" class="text-white">PS 200 - The Benson School</a></li>
+              <li><a href="https://www.is228.org/" class="text-white">IS 228 - David A. Boody</a></li>
+              <li><a href="https://www.ps215.org/" class="text-white">PS 215 - Morris H. Weiss</a></li>
+              <li><a href="https://sites.google.com/schools.nyc.gov/is278/home" class="text-white">IS 278 - Marine Park</a></li>
+              <li><a href="https://www.is201k.org/" class="text-white">IS 201 - Madeleine Brennan School</a></li>
             </ul>
           </div>
           <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase">Tools</h5>
+            <h5 class="text-uppercase">Website Tools</h5>
             <ul class="list-unstyled mb-0">
               <li><a href="https://ngrok.com/" class="text-white">Ngrok</a></li>
               <li><a href="https://www.python.org/" class="text-white">Python</a></li>
@@ -465,148 +295,305 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="modal-dialog modal-fullscreen">
       <div class="modal-content">
         <div class="header">
-          <h1 class="header-text-1">Estuary Beach Event<br>Registration Form</h1>
+          <h1 class="header-text-1">Soapbox Derby<br>Registration Form</h1>
         </div>
 
         <div class="modal-body">
           <form action="/record">
             <div class="div-input">
-              <label for="Name" class="inputing">Name:*</label>
-              <input type="text" class="input-first" name="first_name" placeholder="First Name*"  required>
-              <input type="text" class="input-last" name="last_name" placeholder="Last Name*"  required>
-              <label for="osis" class="inputing">OSIS/Student ID:</label>
-              <input type="tel" name="osis" class="inputs" placeholder="Leave blank if you don't have one" maxlength="9" inputmode="numeric" pattern="\d{1,9}">
-              <label for="email" class="inputing">Email:*</label>
-              <input type="email" class="inputs" name="email" placeholder="example@email.com*"required>
+              <label for="Name" name="name" inputing">Name:*</label>
+              <br>
 
-              <label for="organization" class="inputing">Organization/School:</label> 
-              <div class="dropdown" id="orgDropdown">
-                <input type="text" class="dropdown-input" placeholder="Select or type organization..." name="organization"/>
-                <span class="dropdown-arrow"></span>
-                <div class="dropdown-list">
-                  <input type="text" class="dropdown-search" placeholder="Search organization/schools..." />
-                  <div class="dropdown-items-container"></div>
-                  <div class="dropdown-no-results" style="display:none;">
-                    No results found. Please enter your organization/school name and press enter.
-                  </div>
-                </div>
-              </div>
+<input type="text" class="input-first" name="first" placeholder="First Name*" required
+       oninput="this.value = this.value.replace(/[^a-zA-Z\s'-]/g, '')" />
 
-              <div id="otherOrg">
-                <label id="otherlabel" class="inputing" for="otherOrgInput">Other Organization:</label>
-                <input class="inputs" type="text" id="otherOrgInput" name="organizations" placeholder="Enter organization name"/>
-              </div>
+<input type="text" class="input-last" name="last" placeholder="Last Name*" required
+       oninput="this.value = this.value.replace(/[^a-zA-Z\s'-]/g, '')" />
 
-              <script>
-                (function(){
-                  const dropdown = document.getElementById('orgDropdown');
-                  const dropdownInput = dropdown.querySelector('.dropdown-input');
-                  const dropdownList = dropdown.querySelector('.dropdown-list');
-                  const dropdownSearch = dropdown.querySelector('.dropdown-search');
-                  const dropdownItemsContainer = dropdown.querySelector('.dropdown-items-container');
-                  const noResultsMsg = dropdown.querySelector('.dropdown-no-results');
-                  const otherOrgDiv = document.getElementById('otherOrg');
-                  const otherOrgInput = document.getElementById('otherOrgInput');
+              <label for="osis" class="inputing">OSIS/Student ID of the rider:*</label>
+<input
+  type="tel"
+  name="osis"
+  class="inputs"
+  placeholder="Ex: 235000000*"
+  minlength="9"
+  maxlength="9"
+  inputmode="numeric"
+  pattern="\d{9}"
+  oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+  required
+/>
 
-                  const organizations = [
-                    "Brooklyn Italians Soccer Club",
-                    "Billion Oyster Project",
-                    "City Parks Foundation",
-                    "Eubie Blake P.S 25",
-                    "Harbor School",
-                    "John Dewey High School",
-                    "Kingsborough Early College School",
-                    "NYSMEA",
-                    "Partnership for Parks",
-                    "St. Patrick's School",
-                    "Wildlife Conservation Society",
-                    "Xaverian High School"
-                  ];
+<label class="inputing">Rider's Birthday*</label>
+<div class="birthday-selectors">
+  <!-- Month Dropdown -->
+  <select id="dob_month" class="dob-select" required>
+    <option value="" disabled selected>Month*</option>
+    <option value="01">January</option>
+    <option value="02">February</option>
+    <option value="03">March</option>
+    <option value="04">April</option>
+    <option value="05">May</option>
+    <option value="06">June</option>
+    <option value="07">July</option>
+    <option value="08">August</option>
+    <option value="09">September</option>
+    <option value="10">October</option>
+    <option value="11">November</option>
+    <option value="12">December</option>
+  </select>
 
-                  let selectedOrg = null;
+  <!-- Day Dropdown -->
+  <select id="dob_day" class="dob-select" required>
+    <option value="" disabled selected>Day*</option>
+    <!-- Days will be populated by JavaScript -->
+  </select>
 
-                  function renderList(filter = '') {
-                    dropdownItemsContainer.innerHTML = '';
-                    const filtered = organizations.filter(org =>
-                      org.toLowerCase().includes(filter.toLowerCase())
-                    );
+  <!-- Year Dropdown -->
+  <select id="dob_year" class="dob-select" required>
+    <option value="" disabled selected>Year*</option>
+    <!-- Years will be populated by JavaScript -->
+  </select>
+  
+  <!-- Hidden input that will contain the combined date -->
+  <input type="hidden" name="dob" id="dob" required>
+</div>
 
-                    if (filtered.length === 0) {
-                      noResultsMsg.style.display = 'block';
-                    } else {
-                      noResultsMsg.style.display = 'none';
-                      filtered.forEach(org => {
-                        const div = document.createElement('div');
-                        div.className = 'dropdown-item';
-                        div.textContent = org;
-                        div.addEventListener('click', () => {
-                          selectOrganization(org);
-                        });
-                        dropdownItemsContainer.appendChild(div);
-                      });
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Generate years (from current year back to 100 years ago)
+  const yearSelect = document.getElementById('dob_year');
+  const currentYear = new Date().getFullYear();
+  for (let year = currentYear; year >= currentYear - 100; year--) {
+    const option = document.createElement('option');
+    option.value = year;
+    option.textContent = year;
+    yearSelect.appendChild(option);
+  }
 
-                      const otherDiv = document.createElement('div');
-                      otherDiv.className = 'dropdown-item';
-                      otherDiv.textContent = 'Other';
-                      otherDiv.style.fontStyle = 'italic';
-                      otherDiv.addEventListener('click', () => {
-                        selectOrganization('Other');
-                      });
-                      dropdownItemsContainer.appendChild(otherDiv);
-                    }
-                  }
+  // Generate days (1-31)
+  const daySelect = document.getElementById('dob_day');
+  for (let day = 1; day <= 31; day++) {
+    const option = document.createElement('option');
+    option.value = day < 10 ? '0' + day : day;
+    option.textContent = day;
+    daySelect.appendChild(option);
+  }
 
-                  function selectOrganization(orgName) {
-                    selectedOrg = orgName;
-                    dropdownInput.value = orgName === 'Other' ? '' : orgName;
-                    dropdown.classList.remove('open');
-                    dropdownSearch.value = '';
-                    renderList();
-                    if (orgName === 'Other') {
-                      otherOrgDiv.style.display = 'block';
-                      otherOrgInput.value = '';
-                      otherOrgInput.focus();
-                    } else {
-                      otherOrgDiv.style.display = 'none';
-                      otherOrgInput.value = '';
-                    }
-                  }
+  // Update days based on month/year selection
+  function updateDays() {
+    const month = document.getElementById('dob_month').value;
+    const year = document.getElementById('dob_year').value;
+    const daySelect = document.getElementById('dob_day');
+    
+    if (!month || !year) return;
+    
+    // Get days in month
+    const daysInMonth = new Date(year, month, 0).getDate();
+    
+    // Update day options
+    const currentDay = daySelect.value;
+    daySelect.innerHTML = '<option value="" disabled selected>Day</option>';
+    
+    for (let day = 1; day <= daysInMonth; day++) {
+      const option = document.createElement('option');
+      option.value = day < 10 ? '0' + day : day;
+      option.textContent = day;
+      daySelect.appendChild(option);
+    }
+    
+    // Restore selected day if it's still valid
+    if (currentDay && currentDay <= daysInMonth) {
+      daySelect.value = currentDay;
+    }
+  }
 
-                  dropdownInput.addEventListener('click', () => {
-                    dropdown.classList.toggle('open');
-                    dropdownSearch.focus();
-                    renderList();
-                  });
+  // Update the hidden dob field whenever any selection changes
+  function updateDOBField() {
+    const month = document.getElementById('dob_month').value;
+    const day = document.getElementById('dob_day').value;
+    const year = document.getElementById('dob_year').value;
+    
+    if (month && day && year) {
+      document.getElementById('dob').value = `${month}/${day}/${year}`;
+    } else {
+      document.getElementById('dob').value = '';
+    }
+  }
 
-                  dropdownSearch.addEventListener('input', () => {
-                    const val = dropdownSearch.value.trim();
-                    renderList(val);
+  // Add event listeners
+  document.getElementById('dob_month').addEventListener('change', function() {
+    updateDays();
+    updateDOBField();
+  });
+  
+  document.getElementById('dob_year').addEventListener('change', function() {
+    updateDays();
+    updateDOBField();
+  });
+  
+  document.getElementById('dob_day').addEventListener('change', updateDOBField);
+  
+  // Initial update
+  updateDOBField();
+});
+</script>
 
-                    if (val.length > 0 && !organizations.some(org => org.toLowerCase() === val.toLowerCase())) {
-                      noResultsMsg.style.display = 'block';
-                    } else {
-                      noResultsMsg.style.display = 'none';
-                    }
-                  });
+<style>
+.birthday-selectors {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
 
-                  document.addEventListener('click', e => {
-                    if (!dropdown.contains(e.target)) {
-                      dropdown.classList.remove('open');
+.dob-select {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+</style>
 
-                      const typed = dropdownSearch.value.trim();
-                      if (typed.length > 0 && !organizations.some(org => org.toLowerCase() === typed.toLowerCase())) {
-                        selectOrganization('Other');
-                        otherOrgInput.value = typed;
-                        dropdownInput.value = typed;
-                      }
-                    }
-                  });
 
-                  dropdownInput.addEventListener('keydown', e => {
-                    e.preventDefault();
-                  });
-                })();
-              </script>
+            <!--phonenum + script-->
+            <label for="phone" class="inputing">Phone Number:*</label>
+              <input
+  type="tel"
+  id="phoneInput"
+  class="inputs"
+  name="phone"
+  placeholder="+1-___-___-____*"
+  pattern="\+1-\d{3}-\d{3}-\d{4}"
+  maxlength="16"
+  inputmode="tel"
+  required
+/>
+
+<script>
+  const phoneInput = document.getElementById('phoneInput');
+
+  phoneInput.addEventListener('input', (e) => {
+    let val = phoneInput.value;
+
+    // If user deleted all, don't force prefix immediately
+    if (!val.startsWith('+1')) {
+      val = '+1';
+    }
+
+    // Remove all chars except digits and plus
+    val = val.replace(/[^\d+]/g, '');
+
+    let digits = val.slice(2).substring(0, 10);
+
+    let formatted = '+1';
+
+    if (digits.length > 0) formatted += '-';
+    if (digits.length <= 3) {
+      formatted += digits;
+    } else if (digits.length <= 6) {
+      formatted += digits.substring(0, 3) + '-' + digits.substring(3);
+    } else {
+      formatted += digits.substring(0, 3) + '-' + digits.substring(3, 6) + '-' + digits.substring(6);
+    }
+
+    phoneInput.value = formatted;
+  });
+
+  phoneInput.addEventListener('focus', () => {
+    setTimeout(() => {
+      phoneInput.selectionStart = phoneInput.selectionEnd = phoneInput.value.length;
+    }, 0);
+  });
+</script>
+
+  <!--end of phonenum + script-->
+
+
+<label for="email" class="inputing">Email:*</label>
+<input
+  type="email"
+  class="inputs"
+  name="email"
+  placeholder="example@email.com*"
+  required
+  pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+/>
+
+
+<!-- Role Select -->
+<label for="role" class="inputing">Role:*</label>
+<select id="role" name="role" class="form-select" required>
+  <option value="" disabled selected>Select role*</option>
+  <option value="Volunteer">Volunteer</option>
+  <option value="Parent">Parent</option>
+  <option value="Pit Crew">Pit Crew</option>
+  <option value="Teacher">Teacher</option>
+</select>
+<div id="roleError" class="error-message" style="color: red; display: none; margin-top: 5px;">Please select a role</div>
+
+<!-- School Select -->
+<label for="school" class="inputing">School:*</label>
+<select id="school" name="school" class="form-select" required>
+  <option value="" disabled selected>Select school*</option>
+  <option value="PS 200 – The Benson School">PS 200 – The Benson School</option>
+  <option value="IS 228 – David A. Boody">IS 228 – David A. Boody</option>
+  <option value="PS 215 – Morris H. Weiss">PS 215 – Morris H. Weiss</option>
+  <option value="IS 278 – Marine Park">IS 278 – Marine Park</option>
+  <option value="IS 201 – Madeleine Brennan School">IS 201 – Madeleine Brennan School</option>
+  <option value="John Dewey High School">John Dewey High School</option>
+</select>
+<div id="schoolError" class="error-message" style="color: red; display: none; margin-top: 5px;">Please select a school</div>
+
+<script>
+  // Simple validation for the select elements
+  document.addEventListener('DOMContentLoaded', function() {
+    // If you have a custom submit button, add this click handler
+    document.getElementById('yourSubmitButtonId')?.addEventListener('click', function(e) {
+      let isValid = true;
+      
+      // Validate role select
+      const roleSelect = document.getElementById('role');
+      const roleError = document.getElementById('roleError');
+      if (!roleSelect.value) {
+        roleError.style.display = 'block';
+        roleSelect.style.borderColor = 'red';
+        isValid = false;
+      } else {
+        roleError.style.display = 'none';
+        roleSelect.style.borderColor = '';
+      }
+      
+      // Validate school select
+      const schoolSelect = document.getElementById('school');
+      const schoolError = document.getElementById('schoolError');
+      if (!schoolSelect.value) {
+        schoolError.style.display = 'block';
+        schoolSelect.style.borderColor = 'red';
+        isValid = false;
+      } else {
+        schoolError.style.display = 'none';
+        schoolSelect.style.borderColor = '';
+      }
+      
+      if (!isValid) {
+        e.preventDefault();
+        return false;
+      }
+    });
+    
+    // Clear errors when a selection is made
+    document.getElementById('role').addEventListener('change', function() {
+      document.getElementById('roleError').style.display = 'none';
+      this.style.borderColor = '';
+    });
+    
+    document.getElementById('school').addEventListener('change', function() {
+      document.getElementById('schoolError').style.display = 'none';
+      this.style.borderColor = '';
+    });
+  });
+</script>
 
               <p class="required-note">* Required fields</p>
               <div class="div-reset">

@@ -52,7 +52,7 @@ def record():
         request.args.get("role", "None")
     )
 
-    if _person.check():
+    if _person.exists():
         session['_person'] = json.dumps(_person.asjson())
         session['_recorded'] = True
         return redirect(url_for("index"))
