@@ -3,6 +3,7 @@ from flask import send_from_directory
 from flask import Flask, render_template, request, url_for, redirect, session, send_file
 from library.person.person import *
 from library.function import functions
+from datetime import datetime
 
 import secrets
 import logging
@@ -22,7 +23,7 @@ def error():
         if(session['_error']):
             session.pop("_error")
             return render_template("error.html", error=session["_error"])
-    except Exception as _:
+    except KeyError:
         return redirect(url_for("index"))
 
 @app.route("/")
@@ -41,6 +42,7 @@ def index():
 
 @app.route("/record")
 def record():
+    print(request.args.get("dobs", "None"))
     _person = Person(
         request.args.get("last", "None"),
         request.args.get("first", "None"),
@@ -48,17 +50,9 @@ def record():
         request.args.get("phone", "None"),
         request.args.get("school", "John Dewey High School"),
         request.args.get("osis", "None"),
-        request.args.get("DOB", "None"),
+        request.args.get("dobs", "None"),
         request.args.get("role", "None")
     )
-
-    if _person.exists():
-        session['_person'] = json.dumps(_person.asjson())
-        session['_recorded'] = True
-        return redirect(url_for("index"))
-
-    print(f"Recording: {_person}")
-    
     try:
         saved = _person.save()
         if saved:
@@ -78,4 +72,4 @@ def record():
 
 
 if(__name__ == "__main__"):
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=500, debug=True)

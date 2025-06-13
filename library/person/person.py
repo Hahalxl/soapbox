@@ -1,6 +1,7 @@
 from logging import lastResort
 
 import pandas as pd
+import os
 
 from library.function.functions import _config
 class Person:
