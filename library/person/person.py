@@ -3,7 +3,12 @@ from logging import lastResort
 import pandas as pd
 import os
 
-from library.function.functions import _config
+def _config() -> dict:
+    import json
+    with open("config.json") as configed:
+        config = json.load(configed)["filing"]
+        configed.close()
+    return config
 class Person:
     def __init__(self, last:str, first:str, email:str, phone:str, school:str, osis:str, dob:str, role:str):
         self.last = last
@@ -34,9 +39,12 @@ class Person:
         with open(config["dir"]+config["name"], "a") as file:
             file.write(f"{self.last},{self.first},{self.email},{self.phone},{self.school},{self.osis},{self.dob},{self.role}\n")
             file.close()
+        return True
+            
+    def asjson(self) ->dict:
+        return {"name": self.first + " " + self.last, "email": self.email, "phone": self.phone, "school":self.school, "osis":self.osis, "dob": self.dob, "role":self.role}
 
 if (__name__ == "__main__"):
     import os
     os.chdir(r"C:\Users\Ronan\OneDrive\Desktop\Coding project\soapbox")
     e = Person("Liu", "Alex", "alexliu@gmail", "929-269-3123", "Han Solo High School", "213213221312", "2/12/2011", "Watcher")
-    e.save()

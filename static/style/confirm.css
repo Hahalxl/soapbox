@@ -1,0 +1,128 @@
+.title{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    height: fit-content;
+    margin-bottom: 60px;
+    box-shadow: 0px 6px 5px #000;
+}
+.main-text{
+    font-size: 32px;
+}
+.sub-text{
+    font-size: 100%;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.body-title{
+    border:#000 3px solid;
+    text-align: center;
+    background-color: #fafafad5;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: fit-content;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.title-text-2{
+    font-size: 28px;
+}
+.body{
+    border: #000 3px solid;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+    margin-top: 50px;
+    border-radius: 7px;
+    height:fit-content;
+}
+.body-header{
+    border-bottom: #000 3px solid;
+    padding-left: 10px;
+    background-color: #ff0000;
+    color: #fff;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    height: fit-content;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.body-content{
+    display: block;
+    width: 50%
+
+}
+.name{
+    text-align: center;
+    margin-bottom: 5px;
+    border-bottom: #000 1px solid;
+    text-align: center;
+    font-size: 24px;
+}
+.body-img{
+    width: 200px;
+}
+
+
+@media (max-width: 600px){
+    .body-header{
+        text-align: center;
+        padding-left: 0px;
+    }
+    .body-body{
+        display: block;
+    }
+    .body-imgs{
+        margin-left: auto;
+        margin-right: auto;
+        width:fit-content;
+        display: block;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .body-img{
+        width: 200px;
+    }
+    .body-content{
+        width: 90%;
+        margin-left: auto;
+        margin: auto;
+        display: block;
+    }
+
+    .values{
+        display: block;
+        margin-bottom: 5px;
+        text-align: center;
+        font-size: 20px;
+        width: 100%;
+    }
+    .name{
+        font-size: small;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-weight: 600;
+        padding-bottom: 5px;
+    }
+    .body-footer{
+        background-color: #ff0000;
+        height: fit-content;
+        padding-bottom: 3px;
+        text-align: center;
+        border-top: #000 3px solid;
+        color: #fff;
+    }
+    .return{
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-top: 5px;
+        margin-bottom: 50px;
+    }
+    .return-btn{
+        width: 200px;
+    }
+}

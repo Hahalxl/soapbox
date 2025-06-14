@@ -30,19 +30,16 @@ def error():
 def index():
     try:
         _person = session["_person"]
-        if(_person is not None):
+        if(_person):
             _person_info = json.loads(_person)
-            _person_info["color"] = functions.randcol()
-            _person_info["recorded"] = session['_recorded']
-            session.clear()
-            return render_template("information.html", _person=_person_info)
-    except KeyError:
+            return render_template("confirm.html", this=_person_info)
+        
+    except Exception as e:
         pass
     return render_template("index.html")
 
 @app.route("/record")
 def record():
-    print(request.args.get("dobs", "None"))
     _person = Person(
         request.args.get("last", "None"),
         request.args.get("first", "None"),
@@ -54,19 +51,19 @@ def record():
         request.args.get("role", "None")
     )
     try:
-        saved = _person.save()
-        if saved:
-            session['_recorded'] = False
-            session['_person'] = json.dumps(_person.asjson())
-            print("Clearing Console...")
-            os.system("cls" if os.name == 'nt' else "clear")
-        else:
-            session["_error"] = "Failed to save record. Check file permissions."
-            return redirect(url_for("error"))
+        _person.save()
+        session['_recorded'] = False
+        session['_person'] = json.dumps(_person.asjson())
+        return redirect(url_for("index"))
     except Exception as e:
         session["_error"] = f"Error saving record: {str(e)}"
         return redirect(url_for("error"))
 
+    return redirect(url_for("index"))
+
+@app.route("/return")
+def returnindex():
+    session.clear()
     return redirect(url_for("index"))
 
 
